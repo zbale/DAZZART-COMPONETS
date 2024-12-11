@@ -153,20 +153,14 @@ body {
 }
 
 .action-buttons button {
-  padding: 8px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 14px;
-  transition: all 0.3s ease;
-  color: #fff;
-  margin: 5px;
+  padding: 5px 10px;  /* Reducido el tamaño */
+  font-size: 12px;    /* Reducido el tamaño de fuente */
+  border-radius: 3px; /* Esquinas más suaves */
+  margin: 3px;       /* Menos espacio entre botones */
 }
 
 .add-btn {
   background: #d69e2e;
-  color: white;
 }
 
 .add-btn:hover {
@@ -216,6 +210,20 @@ body {
   background-color: #2d3748;
   color: #fff;
 }
+
+.dataTables_filter input {
+  width: 200px;
+  margin: 0 0 20px 0; 
+  border-radius: 25px;
+  border: 2px solid #4a5568;
+  background-color: #f7fafc;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  color: #333;
+}
+
+
+
 
 /* Responsivo */
 @media (max-width: 768px) {
