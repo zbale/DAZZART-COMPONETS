@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', () => {
   
     deleteButtons.forEach(button => {
       button.addEventListener('click', () => {
- 
         Swal.fire({
           title: '¿Desea eliminar?',
           text: 'Esta acción no se puede deshacer.',
@@ -24,10 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }).then((result) => {
           if (result.isConfirmed) {
           
-            window.location.href = '/archivos html/confirmarEliminacion.html';
+            window.location.href = 'archivos html/confirmarEliminacion.html';
           } else if (result.dismiss === Swal.DismissReason.cancel) {
-       
-            window.location.href = '/archivos html/cancelarEliminacion.html';
+            window.location.href = 'archivos html/cancelarEliminacion.html';
           }
         });
       });

@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Categorias</title>
-    <link rel="stylesheet" href="CSS/maincategoria.css">
+    <link rel="stylesheet" href="CSSA/maincategoria.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
+    <link rel="shortcut icon" href="IMG/DAZZART SIN LETRAS_prev_ui.png" />
+
+
 </head>
 <body>
   <div class="sidebar">
-    <img src="IMG/dazzartnombre.png" alt="Dazzart Components">
+    <a href="index.html">
+    <h1>Dazzart Components</h1>
+  </a>
     <ul>
-      <li><a href="categorias.html">Categorias</a></li>
+      <li><a href="categorias.html">Categorias </a></li>
       <li><a href="subcategorias.html">Subcategorias</a></li>
       <li><a href="Productos.html">Productos</a></li>
       <li><a href="pedido.html">Pedidos</a></li>
       <li><a href="descuentop.html">Descuentos por producto</a></li>
   <li> <a href="descuentocategoria.html">Descuento por Categoria</a></li>
-  <li><a href="pedido.html">Pedidos</a></li>
         <li class="config-item">
             <a href="#" id="config-btn">Configuración</a>
             <ul class="config-menu">
@@ -30,43 +35,88 @@
 </div>
     
     
-      <!-- Contenido principal -->
-      <div class="main-content">
-        <!-- Barra superior -->
-        <div class="topbar">
-          <h1>Categorias</h1>
-          <div class="search-bar">
-            <input type="text" placeholder="Buscar productos...">
-          </div>
-        </div>
     
-        <!-- Tabla de productos -->
-        <table class="product-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Categoria</th>
-              <th>Acciones</th>
-            
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Componentes</td>
+<div class="main-content">
+  <!-- Barra superior -->
+  <div class="topbar">
+    <h1>Categorias</h1>
+    <div class="search-bar">
+      <input type="text" placeholder="Buscar productos...">
+    </div>
+  </div>
+
+  <!-- Tabla de productos -->
+  <table class="product-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Categoria</th>
+        <th>Descripcion</th>
+        <th>Acciones</th>
+      
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Componentes</td>
+        <td>productos necesarios para ensamblar Computador.</td>
+        <td class="action-buttons">
+          <button class="add-btn"><a href="añadirca.html"> Añadir </a></button>
+          <button class="edit-btn"><a href="actualizarcat.html">Editar</a></button>
+          <button class="delete-btn">Eliminar</button>
+          
+        </td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Ordenadores</td>
+        <td>Equipos preensamblados.</td>
+        <td class="action-buttons">
+          <button class="add-btn"><a href="añadirca.html"> Añadir </a></button>
+          <button class="edit-btn"><a href="actualizarcat.html">Editar</a></button>
+          <button class="delete-btn">Eliminar</button>
+          
+        </td>
+      </tr>
+      <tr>
+        <tr>
+          <td>3</td>
+          <td>Almacenamiento</td>
+          <td>Unidades de Almacenamiento de informacion.</td>
+          <td class="action-buttons">
+            <button class="add-btn"><a href="añadirca.html"> Añadir </a></button>
+            <button class="edit-btn"><a href="actualizarcat.html">Editar</a></button>
+            <button class="delete-btn">Eliminar</button>
+          </td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Audio</td>
+          <td>Equipos de sonido.</td>
+          <td class="action-buttons">
+            <button class="add-btn"><a href="añadirca.html"> Añadir </a></button>
+            <button class="edit-btn"><a href="actualizarcat.html">Editar</a></button>
+            <button class="delete-btn">Eliminar</button>
+          </td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Monitores</td>
+          <td> Pantallas de distintos tipos.</td>
+          <td class="action-buttons">
+            <button class="add-btn"><a href="añadirca.html"> Añadir </a></button>
+            <button class="edit-btn"><a href="actualizarcat.html">Editar</a></button>
+            <button class="delete-btn">Eliminar</button>
+          </td>
+        </tr>
+    
         
-              <td class="action-buttons">
-                <button class="add-btn"><a href="añadirca.html"> añadir </a></button>
-                <button class="edit-btn"><a href="actualizarcat.html">Editar</a></button>
-                <button class="delete-btn">Eliminar</button>
-                
-              </td>
-            </tr>
-    
-            <!-- Añadir más filas de productos según sea necesario -->
-          </tbody>
-        </table>
-      </div>
+        
+ 
+    </tbody>
+  </table>
+</div>
       <script src="JS/despegable.js"></script>
       <script>
 
