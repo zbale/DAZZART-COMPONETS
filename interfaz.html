@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/817cf9e37e.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/interfazp.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="shortcut icon" href="IMG/DAZZART SIN LETRAS_prev_ui.png" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <link href='https://fonts.googleapis.com/css?family=Plus Jakarta Sans' rel='stylesheet'>
+    <title>Interfaz Productos - Dazzart Components</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="img/dazzartnombre.png" alt="Logo">
+        </div>
+        <div class="categorias">
+            <button onclick="abrirMenu()"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="barra">
+            <div class="input-contenedor">
+                <input type="text" placeholder="Buscar...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="botones">
+                <button><i class="fa-solid fa-user"></i></button>
+                <button><i class="fas fa-shopping-cart"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="product-grid">
+            <div class="product">
+                <img src="IMG/wevojamon.png" alt="Torre Wevo con Jamón">
+                <h2>Titanium Tower</h2>
+                <p class="price">$2.724.990</p>
+                <ul>
+                    <li>AMD Ryzen 5 8500G</li>
+                    <li>RAM 16GB</li>
+                    <li>M.2 1TB</li>
+                </ul>
+            </div>
+            <div class="product">
+                <img src="img/jamonextra.jpg" alt="Torre Wevo con Jamón Extra">
+                <h2>Quantum Fortress</h2>
+                <p class="price">$4.374.990</p>
+                <ul>
+                    <li>AMD Ryzen 5 8500G</li>
+                    <li>RAM 16GB</li>
+                    <li>GeForce RTX 4060</li>
+                    <li>M.2 2TB</li>
+                </ul>
+            </div>
+            <div class="product">
+                <img src="IMG/pochado.jpg" alt="Torre Wevo Pochado">
+                <h2>Nebula Enclave</h2>
+                <p class="price">$6.379.990</p>
+                <ul>
+                    <li>AMD Ryzen 7 7700X</li>
+                    <li>RAM 32GB</li>
+                    <li>GeForce RTX 4060</li>
+                    <li>M.2 500GB</li>
+                </ul>
+            </div>
+            <div class="product">
+                <img src="IMG/revuelto.jpg" alt="Torre Wevo Revuelto">
+                <h2>Crimson Citadel</h2>
+                <p class="price">$5.799.990</p>
+                <ul>
+                    <li>AMD Ryzen 7 5800X</li>
+                    <li>RAM 16GB</li>
+                    <li>GeForce RTX 4060 Ti</li>
+                    <li>M.2 500GB</li>
+                </ul>
+            </div>
+            <div class="product">
+                <img src="IMG/bronce.png" alt="Torre Bronce">
+                <h2>Sapphire Stronghold</h2>
+                <p class="price">$1.974.990</p>
+                <ul>
+                    <li>AMD Ryzen 5 5600GT</li>
+                    <li>RAM 16GB</li>
+                    <li>M.2 500GB</li>
+                </ul>
+            </div>
+            <div class="product">
+                <img src="IMG/experfor.jpg" alt="Torre Extra Performance">
+                <h2>Eclipse Engine</h2>
+                <p class="price">$4.899.990</p>
+                <ul>
+                    <li>AMD Ryzen 5 8500G</li>
+                    <li>RAM 16GB</li>
+                    <li>GeForce RTX 4060</li>
+                    <li>M.2 1TB</li>
+                </ul>
+            </div>
+            <div class="product">
+                <img src="IMG/tsilver.png" alt="Torre Silver">
+                <h2>Vortex Vanguard</h2>
+                <p class="price">$2.899.990</p>
+                <ul>
+                    <li>Intel Core I7 14700K</li>
+                    <li>RAM 32GB</li>
+                    <li>GeForce RTX 4060</li>
+                    <li>M.2 1TB</li>
+                </ul>
+            </div>
+            <div class="product">
+                <img src="IMG/tgold.jpg" alt="Torre Gold">
+                <h2>Aurora Ascent</h2>
+                <p class="price">$6.799.990</p>
+                <ul>
+                    <li>AMD Ryzen 5 7600</li>
+                    <li>RAM 32GB</li>
+                    <li>GeForce RTX 4060TI</li>
+                    <li>M.2 512GB</li>
+                </ul>
+            </div>
+            <div class="product">
+                <img src="IMG/tpgaming.jpg" alt="Torre Pro Gaming">
+                <h2>Ironhaven Bastion</h2>
+                <p class="price">$8.999.990</p>
+                <ul>
+                    <li>AMD Ryzen 5 5600X</li>
+                    <li>RAM 32GB</li>
+                    <li>GeForce RTX 4060</li>
+                    <li>M.2 500GB</li>
+                </ul>
+            </div>
+            <div class="product">
+                <img src="IMG/tultimate.png" alt="Torre Ultimate">
+                <h2>Celestial Core</h2>
+                <p class="price">$10.499.990</p>
+                <ul>
+                    <li>AMD Ryzen 5 5600GT</li>
+                    <li>RAM 16GB</li>
+                    <li>M.2 500GB</li>
+                </ul>
+            </div>
+        </div>
+        <footer>
+            <div class="footer-content">
+                <div class="redes">
+                    <p>Síguenos en:</p>
+                    <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 Dazzart Components - Todos los derechos reservados</p>
+            </div>
+        </footer>
+    </main>
+</body>
+</html>

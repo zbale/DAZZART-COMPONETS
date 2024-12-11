@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Info</title>
+    <link rel="stylesheet" href="CSS/info.css">
+</head>
+<body>
+  <div class="sidebar">
+    <img src="IMG/dazzartnombre.png" alt="Dazzart Components">
+    <ul>
+      <li><a href="categorias.html">Categorias</a></li>
+      <li><a href="subcategorias.html">Subcategorias</a></li>
+      <li><a href="Productos.html">Productos</a></li>
+      <li><a href="pedido.html">Pedidos</a></li>
+      <li><a href="descuentop.html">Descuentos por producto</a></li>
+  <li> <a href="descuentocategoria.html">Descuento por Categoria</a></li>
+  <li><a href="pedido.html">Pedidos</a></li>
+        <li class="config-item">
+            <a href="#" id="config-btn">Configuración</a>
+            <ul class="config-menu">
+                <li><a href="contraseñaadmin.html">Contraseña Admin</a></li>
+                <li><a href="gestionUs.html">Clientes</a></li>
+                <li><a href="index.html">Salir</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+    
+    
+      <!-- Contenido principal -->
+      <div class="main-content">
+        <!-- Barra superior -->
+        <div class="topbar">
+          <h1>Info</h1>
+          <div class="search-bar">
+            <input type="text" placeholder="Buscar productos...">
+          </div>
+        </div>
+        <div class="menuopciones">
+        <ul>
+            <li><a href="info.html">Info</a></li>
+            <li><a href="infoenvio.html">Informacion de envio</a></li>
+            <li><a href="Informacioncompra.html">Informacion de la compra</a></l>
+        
+         </ul>
+        </div>
+        <!-- Tabla de productos -->
+       <div class="contenedortabla">
+                <table border="1">
+          <thead>
+            <tr>
+              <th>Estado de la orden</th>
+              <td>Pendiente</th>
+              <td> <div class="Elementoscelda3"> <input  type="button" value="cancelar orden"> <input type="button" value="cambiar estado"> </div> </th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>Orden</th>
+              <td colspan="2" > <div class="Elementosceld6"> 11  <select>  <option  value="vacio">-----</option>  <option value="pendiente">Pendiente</option>  <option value="completado">Completado</option></select> <input class="botonuno" type="button" value="Guardar"> <input class="botondos" type="button" value="cancelar"> </div> </td>
+              
+            </tr>
+            <tr>
+                <th>guia orden</th>
+                <td colspan="2"> 29iwieqiweiqeqeqw</td>
+            
+              </tr>
+              
+            <!-- Añadir más filas de productos según sea necesario -->
+          </tbody>
+        </table>
+    </div>
+      </div>
+      <script src="JS/despegable.js"></script>
+</body>
+</html>

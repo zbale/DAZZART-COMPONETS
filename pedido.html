@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos</title>
+    <link rel="stylesheet" href="CSS/pedido.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+  <div class="sidebar">
+    <img src="IMG/dazzartnombre.png" alt="Dazzart Components">
+    <ul>
+      <li><a href="categorias.html">Categorias</a></li>
+      <li><a href="subcategorias.html">Subcategorias</a></li>
+      <li><a href="Productos.html">Productos</a></li>
+      <li><a href="pedido.html">Pedidos</a></li>
+      <li><a href="descuentop.html">Descuentos por producto</a></li>
+  <li> <a href="descuentocategoria.html">Descuento por Categoria</a></li>
+  <li><a href="pedido.html">Pedidos</a></li>
+        <li class="config-item">
+            <a href="#" id="config-btn">Configuración</a>
+            <ul class="config-menu">
+                <li><a href="contraseñaadmin.html">Contraseña Admin</a></li>
+                <li><a href="gestionUs.html">Clientes</a></li>
+                <li><a href="index.html">Salir</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+      <!-- Contenido principal -->
+      <div class="main-content">
+        <!-- Barra superior -->
+        <div class="topbar">
+          <h1>Gestión de Pedidos</h1>
+          <div class="search-bar">
+            <input type="text" placeholder="Buscar productos...">
+          </div>
+        </div>
+    
+        <!-- Tabla de productos -->
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Direccion</th>
+              <th>Nombre</th>
+              <th>Productos</th>
+              <th>Cantidad de producto</th>
+              <th>Total a pagar</th>
+              <th>Status</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td> tv 110a #25-90</td>
+              <td>Jose David Daza Camacho</td>
+              <td> hp probook</td>
+              <td> 1 </td>
+              <td> $1600000</td>
+              <td> Pendiente</td>
+              <td class="action-buttons">
+                <button class="view-btn"><a href="info.html">ver</a></button>
+                
+                
+              </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td> tv 111a #25-90</td>
+                <td>Paula Baez </td>
+                <td> Msi rx 580 gb</td>
+                <td> 1 </td>
+                <td> $850000</td>
+                <td> Pendiente</td>
+                <td class="action-buttons">
+                  <button class="view-btn"><a href="info.html">ver</a></button>
+                 
+                  
+                </td>
+              </tr>
+              
+            <!-- Añadir más filas de productos según sea necesario -->
+          </tbody>
+        </table>
+      </div>
+      <script src="JS/despegable.js"></script>
+    
+</body>
+
+</html>
