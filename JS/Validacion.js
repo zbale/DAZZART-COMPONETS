@@ -16,14 +16,14 @@ document.querySelector('.btn-ingresar').addEventListener("click", function(event
     }
 
 
-    if (email === "admin@valecita.com" && password === "2024") {
+    if (email === "valecita@gmail.com" && password === "2024") {
         Swal.fire({
             icon: "success",
             title: "Inicio Exitoso!",
             text: "Bienvenido Administrador.",
             confirmButtonText: "Ingresar",
         }).then(() => {
-            window.location.href = 'Administrador/';
+            window.location.href = '';
         });
         return;
     } 
