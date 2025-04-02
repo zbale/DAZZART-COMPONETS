@@ -87,5 +87,15 @@ function cerrarModal(modalId) {
 }
 
 
+function actualizarCantidad(id, accion) {
+    let input = document.getElementById(id);
+    let cantidad = parseInt(input.value);
 
+    if (accion === 'sumar') {
+        cantidad++;
+    } else if (accion === 'restar' && cantidad > 1) {
+        cantidad--;
+    }
 
+    input.value = cantidad;
+}
