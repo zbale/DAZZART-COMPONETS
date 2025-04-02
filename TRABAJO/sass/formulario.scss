@@ -1,0 +1,35 @@
+// Variables
+$background-color: #f8f9fa;
+$container-bg: white;
+$border-radius: 5px;
+$btn-bg: #ff6600;
+$btn-hover-bg: #cc5200;
+$shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+body {
+  background-color: $background-color;
+}
+
+.container {
+  max-width: 600px;
+  background: $container-bg;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: $shadow;
+}
+
+.form-control {
+  border-radius: $border-radius;
+}
+
+.btn-custom {
+  width: 30%;
+  border-radius: $border-radius;
+  background-color: $btn-bg;
+  color: white;
+  border: none;
+
+  &:hover {
+    background-color: $btn-hover-bg;
+  }
+}
