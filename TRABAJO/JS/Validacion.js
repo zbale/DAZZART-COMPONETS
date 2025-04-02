@@ -4,7 +4,6 @@ document.querySelector('.btn-ingresar').addEventListener("click", function(event
     const email = document.getElementById('email').value.trim();
     const password = document.getElementById('password').value.trim();
 
-
     if (email === '' || password === '') {
         Swal.fire({
             icon: "warning",
@@ -15,33 +14,29 @@ document.querySelector('.btn-ingresar').addEventListener("click", function(event
         return;
     }
 
+    // Simulamos una base de datos en un objeto JS
+    const usuarios = [
+        { email: "admin@valecita.com", password: "2024", rol: "admin" },
+        { email: "josedaviddazacamacho@gmail.com", password: "2024", rol: "usuario" }
+    ];
 
-    if (email === "admin@valecita.com" && password === "2024") {
+    // Buscar el usuario en la "base de datos simulada"
+    const usuario = usuarios.find(user => user.email === email && user.password === password);
+
+    if (usuario) {
         Swal.fire({
             icon: "success",
             title: "Inicio Exitoso!",
-            text: "Bienvenido Administrador.",
+            text: usuario.rol === "admin" ? "Bienvenido Administrador." : "Bienvenido Usuario.",
             confirmButtonText: "Ingresar",
         }).then(() => {
-            window.location.href = 'Administrador/';
-        });
-        return;
-    } 
-    
-    else if (email === "josedaviddazacamacho@gmail.com" && password === "2024") {
-            Swal.fire({
-                icon: "success",
-                title: "Inicio Exitoso!",
-                confirmButtonText: "Ingresar",
-            }).then(() => {
+            if (usuario.rol === "admin") {
+                window.location.href = 'Administrador/';
+            } else {
                 window.location.href = 'categorias.html';
-            });
-            return;
-        }
-    
-    
-    
-    else {
+            }
+        });
+    } else {
         Swal.fire({
             icon: "error",
             title: "Credenciales Incorrectas",
