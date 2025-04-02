@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const loginForm = document.querySelector("#login-modal form");
 
     loginForm.addEventListener("submit", function (event) {
-        event.preventDefault(); // Evita que el formulario se envíe automáticamente
+        event.preventDefault(); 
 
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value.trim();
@@ -11,8 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
             mostrarAlerta("Por favor, completa todos los campos.");
             return;
         }
-
-        // Aquí puedes agregar más validaciones o lógica para autenticar al usuario
         console.log("Usuario:", email);
         console.log("Contraseña:", password);
     });

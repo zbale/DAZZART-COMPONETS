@@ -41,7 +41,7 @@
   font-size: 16px;
 }
 .modal-content .btn:hover {
-  background-color: #200510;
+  background-color: #188ffe;
 }
 .modal-content .options {
   margin-top: 15px;
@@ -65,6 +65,32 @@
   cursor: pointer;
   color: #3E363F;
   z-index: 20;
+}
+
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+}
+.modal-footer a {
+  flex: auto;
+}
+.modal-footer a:first-child {
+  text-align: left;
+}
+.modal-footer a:last-child {
+  text-align: right;
+}
+
+.link-password, .register-link {
+  color: black;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+.link-password:hover, .register-link:hover {
+  color: #188ffe;
 }
 
 /*# sourceMappingURL=login.css.map */
