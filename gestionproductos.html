@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
   <!-- Estilos personalizados -->
-  <link rel="stylesheet" href="CSSA/actualizarcat.css">
+  <link rel="stylesheet" href="CSSA/gestionproductos.css">
 
 
 </head>
@@ -78,34 +78,105 @@
 
   <!-- Contenido principal -->
   <div class="main-content">
-    <h1>actualizar categorias</h1>
+    <h1>Subcategorías</h1>
 
     <!-- Tabla con DataTables -->
-
+    <table class="table table-striped table-hover" id="tablaCategorias">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Imagen</th>
+          <th>producto</th>
+          <th>descripcion</th>
+          <th>precio</th>
+          <th> stock</th>
+          <th> categoria</th>
+          <th>acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>12SFS134</td>
+          <td><img src="IMG/61nkN0ClxkL._AC_SL1395_.jpg" alt="hp probook"></td>
+          <td>Hp Probook</td>
+          <td>Portatil Para Trabajo De Oficina</td>
+          <td>$1.600.000</td>
+          <td>10</td>
+          <td>Ordenadores</td>
+          
+          <td>
+            <a href="añadirca.html" class="btn btn-warning btn-sm">Añadir</a>
+            <a href="actualizarcat.html" class="btn btn-success btn-sm">Editar</a>
+            <button class="btn btn-danger btn-sm delete-btn">Eliminar</button>
+          </td>
+        </tr>
+        <tr>
+            <td>12SFS134</td>
+            <td><img src="IMG/24296.png" alt="hp probook"></td>
+            <td>Hp Probook</td>
+            <td>Portatil Para Trabajo De Oficina</td>
+            <td>$1.600.000</td>
+            <td>10</td>
+            <td>Ordenadores</td>
+            
+            <td>
+              <a href="añadirca.html" class="btn btn-warning btn-sm">Añadir</a>
+              <a href="actualizarcat.html" class="btn btn-success btn-sm">Editar</a>
+              <button class="btn btn-danger btn-sm delete-btn">Eliminar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>12SFS134</td>
+            <td><img src="IMG/memoria-ram-ddr5-kingston-16gb-5600mhz-para-desktop.jpg" alt="hp probook"></td>
+            <td>Hp Probook</td>
+            <td>Portatil Para Trabajo De Oficina</td>
+            <td>$1.600.000</td>
+            <td>10</td>
+            <td>Ordenadores</td>
+            
+            <td>
+              <a href="añadirca.html" class="btn btn-warning btn-sm">Añadir</a>
+              <a href="actualizarcat.html" class="btn btn-success btn-sm">Editar</a>
+              <button class="btn btn-danger btn-sm delete-btn">Eliminar</button>
+            </td>
+          </tr>
+         
+        
+      </tbody>
+    </table>
   </div>
 
-  <div class="d-flex justify-content-center align-items-center vh-80">
-    <form class="p-4 bg-light rounded shadow-sm w-50">
-      
-      <div class="mb-3">
-        <label for="descuento" class="form-label">categoria</label>
-        <select class="form-select" id="actualizardesc">
-          <option value="" selected disabled>Seleccione una opción</option>
-          <option value="">ordenadores</option>
-          <option value="">Perifericos</option>
-          <option value="">Componentes</option>
-        </select>
-      </div>
-      <div class="mb-3">
-        <label for="valor descuento" class="form-label">subcategoria</label>
-        <input type="text" class="form-control" id="categoriaNombre" placeholder="portatiles">
-      </div>
-      
-      <div class="text-center mt-4">
-        <button type="submit" class="btn btn-dark">Actualizar</button>
-      </div>
-    </form>
-  </div>
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- jQuery y DataTables -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+  <!-- Script para inicializar DataTables -->
+  <script>
+    $(document).ready(function() {
+      $('#tablaCategorias').DataTable({
+        "responsive": true,
+        "autoWidth": false,
+        "language": {
+          "lengthMenu": "Mostrar _MENU_ registros por página",
+          "zeroRecords": "No se encontraron resultados",
+          "info": "Mostrando página _PAGE_ de _PAGES_",
+          "infoEmpty": "No hay registros disponibles",
+          "infoFiltered": "(filtrado de _MAX_ registros en total)",
+          "search": "Buscar:",
+          "paginate": {
+            "first": "Primero",
+            "last": "Último",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
