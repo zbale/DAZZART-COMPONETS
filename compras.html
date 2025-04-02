@@ -16,106 +16,152 @@
 
 <body>
 
+    
     <header>
-        <div class="logo">
-            <a href="index.html">
-            <img src="IMG/Captura de pantalla 2024-11-25 183458.png" alt="Logo"></a>
-        </div>
-        <div class="categorias">
-            <button onclick="abrirMenu()"><i class="fas fa-bars"></i></button>
-        </div> 
-
-        
-        <div class="barra">
-            <div class="input-contenedor">
-                <input type="text" placeholder="Buscar..." >
-                <button><i class="fas fa-search"></i></button>
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <!-- Logo -->
+                <div class="col-3 ms-5">
+                    <img src="IMG/Captura de pantalla 2024-11-25 183458.png" alt="Logo" class="img-fluid">
+                </div>
+    
+                <!-- Menú de categorías -->
+                <div class="col-1 text-center me-5">
+                    <button class="btn btn-outline-primary" onclick="abrirMenu()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+    
+                <!-- Barra de búsqueda -->
+                <div class="col-3 text-start ms-5">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar">
+                        <button class="btn ms-2">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+                
+    
+                <!-- Botones (Login y Carrito) -->
+                <div class="col-3 d-flex justify-content-end p-3 ml-6 mt-1">
+                    <!-- Icono de login -->
+                    <button id="login-btn" class="btn btn-outline-info">
+                        <i class="fa-solid fa-user"></i>
+                    </button>
+                    <!-- Icono de carrito -->
+                    <a href="compras.html" class="btn btn-outline-warning ">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                </div>
             </div>
-
-            <div class="botones">
-                <button><i class="fa-solid fa-user"></i></button>
-                <button><i class="fas fa-shopping-cart"></i></button> 
-            </div>          
+        </div>
     </header>
 
     
-    <main>
-        <div class="container">
-            <section class="carrito"><BR></BR>
-                <h2>Tu Carrito de Compras</h2>
+ 
+    <main class="container mt-5">
+        <section class="carrito">
+            <h2 class="text-center mb-4">Tu Carrito de Compras</h2>
 
-                <div class="producto">
-                    <img src="IMG/61r4Y8ySAUL._AC_SL1500_.jpg" alt="Producto 1">
-                    <div class="producto-info">
-                        <p><strong>Fnatic Lamzu Thorn Wireless Pro Gaming Mouse 4K Edición Especial</strong></p>
-                        <p class="precio">$ 600.000</p>
-                    </div>
-                    <button class="eliminar"><i class="fa-solid fa-trash"></i></button>
+            <div class="row mb-3 align-items-center border-bottom pb-3">
+                <div class="col-md-2">
+                    <img src="IMG/61r4Y8ySAUL._AC_SL1500_.jpg" class="img-fluid" alt="Producto 1">
                 </div>
-
-                <div class="producto">
-                    <img src="IMG/1-2.png" alt="Producto 2">
-                    <div class="producto-info">
-                        <p><strong>Volante de carreras y pedales Logitech G923 para PlayStation 5 y PlayStation 4</strong></p>
-                        <p class="precio">$ 1.600.000</p>
-                    </div>
-                    <button class="eliminar"><i class="fa-solid fa-trash"></i></button>
+                <div class="col-md-4">
+                    <p><strong>Fnatic Lamzu Thorn Wireless Pro Gaming Mouse 4K Edición Especial</strong></p>
+                    <p class="precio">$ 600.000</p>
                 </div>
-
-                <div class="producto">
-                    <img src="IMG/1.png" alt="Producto 3">
-                    <div class="producto-info">
-                        <p><strong>Audífonos inalámbricos Logitech G Astro A50 X</strong></p>
-                        <p class="precio">$ 1.000.000</p>
-                    </div>
-                    <button class="eliminar"><i class="fa-solid fa-trash"></i></button>
+                <div class="col-md-3 text-center">
+                    <button class="btn btn-outline-secondary" onclick="actualizarCantidad('cantidad1', 'restar')">-</button>
+                    <input id="cantidad1" type="text" class="form-control d-inline w-25 text-center" value="1" readonly>
+                    <button class="btn btn-outline-secondary" onclick="actualizarCantidad('cantidad1', 'sumar')">+</button>
                 </div>
-
-                <div class="total">
-                    <p><strong>Total: $ 3.400.000</strong></p>
+                <div class="col-md-2 text-end">
+                    <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
                 </div>
-
-            </section>
-
-            <div class="pago">
-                <h2>Información de Pago</h2>
-                <div class="detalles">
-                    <div class="detalle">
-                        <p><strong>SubTotal:</strong></p>
-                        <p class="precio">$ 3.400.000</p>
-                    </div>
-                    <div class="detalle">
-                        <p><strong>Envío:</strong></p>
-                        <p>Envío Gratuito a Distrito Capital</p>
-                    </div>
-                 
-                    <div class="detalle total">
-                        <p><strong>Total:</strong></p>
-                        <p class="precio">$ 3.400.000</p>
-                    </div>
-                </div>
-                <a href="Detallesfactura.html">
-                <button class="comprar">Proceder al Pago</button>
-            </a>
             </div>
+
+            <div class="row mb-3 align-items-center border-bottom pb-3">
+                <div class="col-md-2">
+                    <img src="IMG/1-2.png" class="img-fluid" alt="Producto 2">
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Volante de carreras y pedales Logitech G923</strong></p>
+                    <p class="precio">$ 1.600.000</p>
+                </div>
+                <div class="col-md-3 text-center">
+                    <button class="btn btn-outline-secondary" onclick="actualizarCantidad('cantidad2', 'restar')">-</button>
+                    <input id="cantidad2" type="text" class="form-control d-inline w-25 text-center" value="1" readonly>
+                    <button class="btn btn-outline-secondary" onclick="actualizarCantidad('cantidad2', 'sumar')">+</button>
+                </div>
+                <div class="col-md-2 text-end">
+                    <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+
+            <div class="row mb-3 align-items-center border-bottom pb-3">
+                <div class="col-md-2">
+                    <img src="IMG/1.png" class="img-fluid" alt="Producto 3">
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Audífonos inalámbricos Logitech G Astro A50 X</strong></p>
+                    <p class="precio">$ 1.000.000</p>
+                </div>
+                <div class="col-md-3 text-center">
+                    <button class="btn btn-outline-secondary" onclick="actualizarCantidad('cantidad3', 'restar')">-</button>
+                    <input id="cantidad3" type="text" class="form-control d-inline w-25 text-center" value="1" readonly>
+                    <button class="btn btn-outline-secondary" onclick="actualizarCantidad('cantidad3', 'sumar')">+</button>
+                </div>
+                <div class="col-md-2 text-end">
+                    <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                </div>
+            </div>
+
+            <div class="text-end mt-3">
+                <p><strong>Total: $ 3.400.000</strong></p>
+            </div>
+        </section>
+
+        <div class="pago border p-4 rounded mt-4">
+            <h2>Información de Pago</h2>
+            <div class="detalles">
+                <div class="detalle d-flex justify-content-between">
+                    <p><strong>SubTotal:</strong></p>
+                    <p class="precio">$ 3.400.000</p>
+                </div>
+                <div class="detalle d-flex justify-content-between">
+                    <p><strong>Envío:</strong></p>
+                    <p>Envío Gratuito a Distrito Capital</p>
+                </div>
+                <div class="detalle d-flex justify-content-between border-top pt-2">
+                    <p><strong>Total:</strong></p>
+                    <p class="precio">$ 3.400.000</p>
+                </div>
+            </div>
+            <a href="Detallesfactura.html" class="btn btn-success w-100 mt-3">Proceder al Pago</a>
         </div>
     </main>
 
 
-    <footer>
-        <div class="footer-content">
-            <div class="redes">
-                <p>Síguenos en:</p>
-                <a href="#"><i class="fa-brands fa-facebook"></i></a>
-                <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container text-center">
+            <div class="row flex-column">
+                <div class="col">
+                    <p class="mb-2">Síguenos en:</p>
+                    <a href="#" class="text-white me-2"><i class="fa-brands fa-facebook fa-lg"></i></a>
+                    <a href="#" class="text-white me-2"><i class="fa-brands fa-twitter fa-lg"></i></a>
+                    <a href="https://www.instagram.com/dazzartcomponents/" class="text-white"><i class="fa-brands fa-instagram fa-lg"></i></a>
+                </div>
+            </div>
+            <hr class="my-3 border-light">
+            <div class="row">
+                <div class="col">
+                    <p class="mb-0">&copy; 2024 Dazzart Components - Todos los derechos reservados</p>
+                </div>
             </div>
         </div>
-        <div class="copyright">
-            <p>&copy; 2024 Dazzart Components - Todos los derechos reservados</p>
-        </div>
     </footer>
-
 
     <div class="menu-lateral">
         <header>
