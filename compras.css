@@ -3,8 +3,6 @@
     padding: 0;
 }
 
-
-
 header .btn {
     color: rgb(0, 0, 0); /* Cambia el color del texto de los botones */
     border-color: rgb(255, 255, 255); /* Cambia el color de los bordes de los botones */
@@ -38,194 +36,35 @@ header .btn:hover {
     color: rgb(0, 0, 0);            /* Cambia el color del texto a blanco */
     border-color: gray;      /* Cambia el borde a gris */
 }
+main .pago .btn-success {
+    background-color: #000000 !important; /* Cambia el color de fondo */
+    border-color: #000000 !important;
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-    margin: 10px 100px 100px;
-    width: 3000px;
-    margin-left: 100px;
+    color: white !important; /* Color del texto */
 }
-
-
-.carrito {
-    width: 70%;
-} 
-
-.carrito h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
+.pago .btn-success:hover {
+    background-color: #188ffe !important; /* Color al pasar el cursor */
+    border-color: #0a5faf !important;
 }
 
 
 
 
-
-
-
-
-
-
-.precio {
-    font-weight: bold;
+.btn-danger {
     color: #000000;
+    background-color: #ffffff; /* Rojo más suave */
+    border-color: #ffffff00; /* Rojo oscuro para el borde */
+}
+
+.btn-danger:hover {
+    background-color: #188ffe !important; /* Color al pasar el cursor */
+    border-color: #0a5faf00 !important;
+}
+
+
+.text-primary.fw-bold {
+    color: #188ffe; /* Verde Bootstrap */
 }
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.menu-lateral.open {
-    left: 0;
-}
-.menu-lateral header {
-    background-color: rgba(255, 255, 255, 0);
-    padding: 15px 20px;
-    color: #000;
-    font-size: 1.2rem;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.menu-lateral header i {
-    cursor: pointer;
-}
-.menu-lateral .contenido {
-    padding: 20px;
-}
-
-.menu-lateral .contenido h3 {
-    font-size: 1rem;
-    margin: 15px 0 5px;
-    color: #666;
-}
-
-.menu-lateral ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.menu-lateral ul li {
-    padding: 10px 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    border-bottom: 1px solid #f0f0f0;
-    transition: background 0.3s;
-}
-
-.menu-lateral ul li:hover {
-    background-color: #f9f9f9;
-}
-
-.menu-lateral ul li i {
-    color: #bbb;
-}
-
-.menu-lateral .etiqueta {
-    display: inline-block;
-    background-color: #ffa726;
-    color: white;
-    font-size: 0.8rem;
-    padding: 2px 8px;
-    border-radius: 15px;
-    margin-left: 10px;
-}
-
-.menu-lateral .etiqueta.promo {
-    background-color: #f44336;
-}
-.menu-lateral button i{
-    margin-right: 5px;
-    padding: 0 ;
-}
-
-.menu-lateral {
-    width: 250px;
-    height: 100vh;
-    background-color: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    color: black;
-    padding: 10px 20px;
-    box-shadow: none;
-    border-right: 1px solid #ccc; 
-}
-
-.menu-lateral header {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
-.menu-lateral ul li {
-    padding: 10px 0;
-    border-bottom: 1px solid #f0f0f0;
-    cursor: pointer;
-}
-
-.menu-lateral {
-    position: fixed;
-    top: 0;
-    left: -250px; 
-    width: 250px;
-    height: 100%;
-    background-color: #fff;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-    overflow-y: auto;
-    transition: left 0.3s ease;
-    z-index: 1000;
-}
-.cerrar-menu {
-    position: absolute;
-    top: 10px;
-    right: 220px;
-    background: transparent;
-    border: none;
-    font-size: 15px;
-    cursor: pointer;
-    color: #3333337a;
-}
-
-.cerrar-menu:hover {
-    color: #000000; /* Cambia de color al pasar el cursor */
-}
-
-.menu-lateral.activo {
-    left: 0; 
-}
-
-.menu-lateral ul a {
-    text-decoration: none; 
-    color: black;
-}
-
-
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100px;
-    }
