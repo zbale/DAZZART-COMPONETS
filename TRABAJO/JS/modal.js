@@ -1,35 +1,50 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const loginForm = document.querySelector("#login-modal form");
+    // aqui es para que muestre el modal cuando se haga clic en el icono de login
+    document.getElementById("login-btn").addEventListener("click", function () {
+        var myModal = new bootstrap.Modal(document.getElementById("login-modal"));
+        myModal.show();
+    });
 
-    loginForm.addEventListener("submit", function (event) {
+    // el manejo del formulario de login
+    document.querySelector("form").addEventListener("submit", function (event) {
         event.preventDefault(); 
 
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value.trim();
 
+        // aqui se verifica si los campos están vacíos
         if (email === "" || password === "") {
-            mostrarAlerta("Por favor, completa todos los campos.");
+            Swal.fire({
+                icon: "warning",
+                title: "Campos vacíos",
+                text: "Por favor, completa todos los campos antes de continuar.",
+                confirmButtonText: "Aceptar",
+            });
             return;
         }
-        console.log("Usuario:", email);
-        console.log("Contraseña:", password);
+
+        const usuarios = {
+            "admin@valecita.com": "2024",
+            "josedaviddazacamacho@gmail.com": "2024",
+        };
+
+        // se valida si el usuario y la contraseña son correctos
+        if (usuarios[email] && usuarios[email] === password) {
+            Swal.fire({
+                icon: "success",
+                title: "Inicio Exitoso!",
+                text: email === "admin@valecita.com" ? "Bienvenido Administrador." : "Bienvenido!",
+                confirmButtonText: "Ingresar",
+            }).then(() => {
+                window.location.href = "categorias.html";
+            });
+        } else {
+            Swal.fire({
+                icon: "error",
+                title: "Credenciales Incorrectas",
+                text: "El correo o la contraseña no son válidos.",
+                confirmButtonText: "Intentar de nuevo",
+            });
+        }
     });
 });
-
-function mostrarAlerta(mensaje) {
-    const alerta = document.createElement("div");
-    alerta.className = "alert alert-warning position-fixed top-0 start-50 translate-middle-x mt-3";
-    alerta.style.zIndex = "1050";
-    alerta.textContent = mensaje;
-
-    document.body.appendChild(alerta);
-
-    setTimeout(() => {
-        alerta.remove();
-    }, 3000);
-}
-
-
-
-
-
