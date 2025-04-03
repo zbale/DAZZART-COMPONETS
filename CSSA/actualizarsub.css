@@ -31,6 +31,7 @@ body {
     margin-left: 250px;
     padding: 20px;
   }
+  
 
   /* Ocultar sidebar en móviles y usar Offcanvas */
   @media (max-width: 768px) {

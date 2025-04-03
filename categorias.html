@@ -96,29 +96,20 @@
           <td>Componentes</td>
           <td>Productos para ensamblar un computador.</td>
           <td>
-            <button type="button"  onclick="window.location.href='añadircat.html'"class="btn btn-warning">Añadir</button>
+            <button type="button"  onclick="window.location.href='añadircat.html'"class="btn btn-warning text-white">Añadir</button>
             <button type="button" onclick="window.location.href='actualizarcat.html'"class="btn btn-success">Editar</button>
-            <button type="button" onclick="window.location.href='Eliminarcategorias.html'" class="btn btn-danger">Eliminar</button>
+            <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
           </td>
         </tr>
-        <tr>
-          <td>1</td>
-          <td>Componentes</td>
-          <td>Productos para ensamblar un computador.</td>
-          <td>
-            <button type="button"  onclick="window.location.href='añadircat.html'"class="btn btn-warning">Añadir</button>
-            <button type="button" onclick="window.location.href='actualizarcat.html'"class="btn btn-success">Editar</button>
-            <button type="button" onclick="window.location.href='Eliminarcategorias.html'" class="btn btn-danger">Eliminar</button>
-          </td>
-        </tr>
+       
         <tr>
           <td>2</td>
           <td>ordenadores</td>
           <td>Equipos preensamblados</td>
           <td>
-            <button type="button"  onclick="window.location.href='añadircat.html'"class="btn btn-warning">Añadir</button>
+            <button type="button"  onclick="window.location.href='añadircat.html'"class="btn btn-warning text-white">Añadir</button>
             <button type="button" onclick="window.location.href='actualizarcat.html'"class="btn btn-success">Editar</button>
-            <button type="button" onclick="window.location.href='Eliminarcategorias.html'" class="btn btn-danger">Eliminar</button>
+            <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
           </td>
         </tr>
         <tr>
@@ -126,9 +117,9 @@
           <td>Almacenamiento</td>
           <td>Unidades de Almacenamietno de Informacion.</td>
           <td>
-            <button type="button"  onclick="window.location.href='añadircat.html'"class="btn btn-warning">Añadir</button>
+            <button type="button"  onclick="window.location.href='añadircat.html'"class="btn btn-warning text-white">Añadir</button>
             <button type="button" onclick="window.location.href='actualizarcat.html'"class="btn btn-success">Editar</button>
-            <button type="button" onclick="window.location.href='Eliminarcategorias.html'" class="btn btn-danger">Eliminar</button>
+            <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
           </td>
         </tr>
         <tr>
@@ -136,9 +127,9 @@
           <td>Audio</td>
           <td>Equipos de sonido.</td>
           <td>
-            <button type="button"  onclick="window.location.href='añadircat.html'"class="btn btn-warning">Añadir</button>
+            <button type="button"  onclick="window.location.href='añadircat.html'"class="btn btn-warning text-white">Añadir</button>
             <button type="button" onclick="window.location.href='actualizarcat.html'"class="btn btn-success">Editar</button>
-            <button type="button" onclick="window.location.href='Eliminarcategorias.html'" class="btn btn-danger">Eliminar</button>
+            <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
           </td>
         </tr>
         <tr>
@@ -146,9 +137,9 @@
           <td>Monitores</td>
           <td>Pantallas de distintos tipos.</td>
           <td>
-            <button type="button"  onclick="window.location.href='añadircat.html'"class="btn btn-warning">Añadir</button>
+            <button type="button"  onclick="window.location.href='añadircat.html'"class="btn btn-warning text-white">Añadir</button>
             <button type="button" onclick="window.location.href='actualizarcat.html'"class="btn btn-success">Editar</button>
-            <button type="button" onclick="window.location.href='Eliminarcategorias.html'" class="btn btn-danger">Eliminar</button>
+            <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
           </td>
         </tr>
         <tr>
@@ -156,9 +147,9 @@
           <td>Teclados y Ratones</td>
           <td>variedad de tipos de telados y ratones</td>
           <td>
-            <button type="button"  onclick="window.location.href='añadircat.html'"class="btn btn-warning">Añadir</button>
+            <button type="button"  onclick="window.location.href='añadircat.html'"class="btn btn-warning text-white">Añadir</button>
             <button type="button" onclick="window.location.href='actualizarcat.html'"class="btn btn-success">Editar</button>
-            <button type="button" onclick="window.location.href='Eliminarcategorias.html'" class="btn btn-danger">Eliminar</button>
+            <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
           </td>
         </tr>
         
@@ -174,29 +165,61 @@
   <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
   <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
-  <!-- Script para inicializar DataTables -->
-  <script>
-    $(document).ready(function() {
-      $('#tablaCategorias').DataTable({
-        "responsive": true,
-        "autoWidth": false,
-        "language": {
-          "lengthMenu": "Mostrar _MENU_ registros por página",
-          "zeroRecords": "No se encontraron resultados",
-          "info": "Mostrando página _PAGE_ de _PAGES_",
-          "infoEmpty": "No hay registros disponibles",
-          "infoFiltered": "(filtrado de _MAX_ registros en total)",
-          "search": "Buscar:",
-          "paginate": {
-            "first": "Primero",
-            "last": "Último",
-            "next": "Siguiente",
-            "previous": "Anterior"
-          }
-        }
-      });
-    });
-  </script>
+ <!-- Script para inicializar DataTables -->
+ <script>
+  $(document).ready(function () {
+$('#tablaCategorias').DataTable({
+  "responsive": true,
+  "autoWidth": false,
+  "language": {
+    "lengthMenu": "Mostrar _MENU_ registros por página",
+    "zeroRecords": "No se encontraron resultados",
+    "info": "Mostrando página _PAGE_ de _PAGES_",
+    "infoEmpty": "No hay registros disponibles",
+    "infoFiltered": "(filtrado de _MAX_ registros en total)",
+    "search": "Buscar:",
+    "paginate": {
+      "first": "Primero",
+      "last": "Último",
+      "next": "Siguiente",
+      "previous": "Anterior"
+    }
+  }
+});
+});
+<!-- Script para inicializar DataTables -->
+document.addEventListener('DOMContentLoaded', () => {
+// Seleccionar todos los botones de eliminar
+const deleteButtons = document.querySelectorAll('.btn-danger');
 
+deleteButtons.forEach(button => {
+  button.addEventListener('click', (event) => {
+    event.preventDefault();
+
+    // Obtener el ID de la fila desde el atributo data-id (puedes modificar según tu necesidad)
+    const rowId = button.getAttribute('data-id');
+
+    Swal.fire({
+      title: '¿Desea eliminar?',
+      text: 'Esta acción no se puede deshacer.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'No, cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Redirigir a la página de eliminación con el ID correspondiente (si aplica)
+        window.location.href = `Eliminarcategorias.html?id=${rowId}`;
+      }
+    });
+  });
+});
+});
+
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

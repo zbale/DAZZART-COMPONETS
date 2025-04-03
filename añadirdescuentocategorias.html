@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
   <!-- Estilos personalizados -->
-  <link rel="stylesheet" href="CSSA/actualizardescpro.css">
+  <link rel="stylesheet" href="CSSA/añadirdescuentocategorias.css">
 
 
 </head>
@@ -78,7 +78,7 @@
 
   <!-- Contenido principal -->
   <div class="main-content">
-    <h1>Actualizar descuentos producto</h1>
+    <h1>Añadir descuento categorias</h1>
 
     <!-- Tabla con DataTables -->
 
@@ -87,31 +87,35 @@
   <div class="d-flex justify-content-center align-items-center vh-80">
     <form class="p-4 bg-light rounded shadow-sm w-50">
       <div class="mb-3">
-        <label for="productos" class="form-label">producto</label>
-        <input type="text" class="form-control" id="categoriaNombre" placeholder="rx580">
+        <label for="descuento" class="form-label">Categoria</label>
+        <select class="form-select" id="actualizardesc">
+
+          <option value="">perifericos</option>
+          <option value="">parlantes</option>
+          
+        </select>
       </div>
       <div class="mb-3">
         <label for="descuento" class="form-label">Tipo de descuento</label>
         <select class="form-select" id="actualizardesc">
-          <option value="" selected disabled>Seleccione una opción</option>
           <option value="">porcentaje</option>
-          <option value="">fijo</option>
-          <option value="">Accesorios</option>
+          <option value="">preciofijo</option>
+          
         </select>
       </div>
       <div class="mb-3">
-        <label for="valor descuento" class="form-label">valor descuento</label>
-        <input type="text" class="form-control" id="categoriaNombre" placeholder="rx580">
+        <label for="valor descuento" class="form-label">Valor descuento</label>
+        <input type="text" class="form-control" id="categoriaNombre" placeholder="">
       </div>
-      <label for="descuento" class="form-label">Tipo de descuento</label>
-      <select class="form-select" id="estadodesc">
-        <option value="" selected disabled>Seleccione una opción</option>
-        <option value="hardware">Activo</option>
-        <option value="software">Desactivo</option>
-      
-      </select>
+      <div class="mb-3">
+        <label for="descuento" class="form-label">Estado descuento</label>
+        <select class="form-select" id="actualizardesc">
+          <option value="">activo</option>
+          <option value="">desactivo</option>
+          
+        </select>
       <div class="text-center mt-4">
-        <button type="button"  class="btn btn-dark" onclick="window.location.href='descuentop.html'">Actualizar</button>
+        <button type="button"  class="btn btn-dark" onclick="window.location.href='descuentocategoria.html'">añadir</button>
       </div>
     </form>
   </div>

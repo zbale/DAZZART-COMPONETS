@@ -92,6 +92,7 @@
             <th>celular</th>
             <th>direccion</th>
             <th>contraseña</th>
+            <th>rol</th>
             <th>acciones</th>
           </tr>
         </thead>
@@ -99,17 +100,17 @@
           <tr>
             <td>1</td>
             <td>1001201758</td>
-            <td>Jose David Daza Camacho</td>
+            <td>Dante juan camilo</td>
             <td>SuperiorLegend123</td>
-            <td>josecrack12113@gmail.com</td>
+            <td>Dante@gmail.com</td>
             <td>3213446510</td>
             <td>tv 110a #25-90</td>
             <td>e1ea314311</td>
-            
+            <td>Administrador</td>
               <td>
-                <button type="button"  onclick="window.location.href='añadirusuario.html'"class="btn btn-warning">Añadir</button>
+                <button type="button"  onclick="window.location.href='añadirusuario.html'"class="btn btn-warning text-white">Añadir</button>
                 <button type="button" onclick="window.location.href='actualizarusuario.html'"class="btn btn-success">Editar</button>
-                <button type="button" onclick="window.location.href='Eliminarusuario.html'" class="btn btn-danger">Eliminar</button>
+                <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
               </td>
            
           
@@ -123,11 +124,11 @@
             <td>3112234559</td>
             <td>tv 112a #55-90</td>
             <td>#!24578aA</td>
-            
+            <td>Cliente</td>
               <td>
-                <button type="button"  onclick="window.location.href='añadirusuario.html'"class="btn btn-warning">Añadir</button>
+                <button type="button"  onclick="window.location.href='añadirusuario.html'"class="btn btn-warning text-white">Añadir</button>
                 <button type="button" onclick="window.location.href='actualizarusuario.html'"class="btn btn-success">Editar</button>
-                <button type="button" onclick="window.location.href='Eliminarusuario.html'" class="btn btn-danger">Eliminar</button>
+                <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
               </td>
              
       
@@ -148,7 +149,9 @@
 
   <!-- Script para inicializar DataTables -->
   <script>
-    $(document).ready(function() {
+      <!-- Script para inicializar DataTables -->
+
+    $(document).ready(function () {
       $('#tablaCategorias').DataTable({
         "responsive": true,
         "autoWidth": false,
@@ -168,7 +171,40 @@
         }
       });
     });
+    <!-- Script para inicializar DataTables -->
+    document.addEventListener('DOMContentLoaded', () => {
+      // Seleccionar todos los botones de eliminar
+      const deleteButtons = document.querySelectorAll('.btn-danger');
+  
+      deleteButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
+  
+          // Obtener el ID de la fila desde el atributo data-id (puedes modificar según tu necesidad)
+          const rowId = button.getAttribute('data-id');
+  
+          Swal.fire({
+            title: '¿Desea eliminar?',
+            text: 'Esta acción no se puede deshacer.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'No, cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Redirigir a la página de eliminación con el ID correspondiente (si aplica)
+              window.location.href = `eliminarusuario.html?id=${rowId}`;
+            }
+          });
+        });
+      });
+    });
+  
+  
   </script>
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
 </body>
 </html>

@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
   <!-- Estilos personalizados -->
-  <link rel="stylesheet" href="CSSA/gestionproductos.css">
+  <link rel="stylesheet" href="CSSA/eliminarproductos.css">
 
 
 </head>
@@ -105,9 +105,9 @@
           <td>Ordenadores</td>
           
           <td>
-            <a href="añadirca.html" class="btn btn-warning btn-sm">Añadir</a>
-            <a href="actualizarcat.html" class="btn btn-success btn-sm">Editar</a>
-            <button class="btn btn-danger btn-sm delete-btn">Eliminar</button>
+            <button type="button"  onclick="window.location.href='añadirproducto.html'"class="btn btn-warning text-white">Añadir</button>
+            <button type="button" onclick="window.location.href='actualizarpro.html'"class="btn btn-success">Editar</button>
+            <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
           </td>
         </tr>
         <tr>
@@ -120,9 +120,9 @@
             <td>Ordenadores</td>
             
             <td>
-              <a href="añadirca.html" class="btn btn-warning btn-sm">Añadir</a>
-              <a href="actualizarcat.html" class="btn btn-success btn-sm">Editar</a>
-              <button class="btn btn-danger btn-sm delete-btn">Eliminar</button>
+              <button type="button"  onclick="window.location.href='añadirproducto.html'"class="btn btn-warning text-white">Añadir</button>
+              <button type="button" onclick="window.location.href='actualizarpro.html'"class="btn btn-success">Editar</button>
+              <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
             </td>
           </tr>
     
@@ -142,7 +142,7 @@
 
   <!-- Script para inicializar DataTables -->
   <script>
-    $(document).ready(function() {
+        $(document).ready(function () {
       $('#tablaCategorias').DataTable({
         "responsive": true,
         "autoWidth": false,
@@ -162,7 +162,40 @@
         }
       });
     });
+    <!-- Script para inicializar DataTables -->
+    document.addEventListener('DOMContentLoaded', () => {
+      // Seleccionar todos los botones de eliminar
+      const deleteButtons = document.querySelectorAll('.btn-danger');
+  
+      deleteButtons.forEach(button => {
+        button.addEventListener('click', (event) => {
+          event.preventDefault();
+  
+          // Obtener el ID de la fila desde el atributo data-id (puedes modificar según tu necesidad)
+          const rowId = button.getAttribute('data-id');
+  
+          Swal.fire({
+            title: '¿Desea eliminar?',
+            text: 'Esta acción no se puede deshacer.',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'No, cancelar'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              // Redirigir a la página de eliminación con el ID correspondiente (si aplica)
+              window.location.href = `eliminarproductos.html?id=${rowId}`;
+            }
+          });
+        });
+      });
+    });
+  
+  
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 </html>
