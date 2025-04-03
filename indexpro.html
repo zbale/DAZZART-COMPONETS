@@ -6,223 +6,133 @@
     <script src="https://kit.fontawesome.com/817cf9e37e.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=FAMILY_NAME:wght@WEIGHT_OR_RANGE&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="IMG/DAZZART SIN LETRAS_prev_ui.png" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Producto - Dazzart Components</title>
     <link rel="stylesheet" href="css/stylos.css">
-    <script>
-        function showSection(sectionId) {
-            document.getElementById('description').style.display = 'none';
-            document.getElementById('additional-info').style.display = 'none';
-            document.getElementById('reviews').style.display = 'none';
-            document.getElementById(sectionId).style.display = 'block';
-        }
-
-        document.addEventListener("DOMContentLoaded", function() {
-            const zoomer = document.querySelector(".product-image img");
-
-            zoomer.addEventListener("mousemove", function(e) {
-                const width = zoomer.offsetWidth;
-                const height = zoomer.offsetHeight;
-                const mouseX = e.offsetX;
-                const mouseY = e.offsetY;
-                const bgPosX = (mouseX / width * 100);
-                const bgPosY = (mouseY / height * 100);
-
-                zoomer.style.transformOrigin = `${bgPosX}% ${bgPosY}%`;
-                zoomer.style.transform = "scale(1.5)";
-            });
-
-            zoomer.addEventListener("mouseleave", function() {
-                zoomer.style.transform = "scale(1)";
-                zoomer.style.transformOrigin = "center center";
-            });
-
-            document.querySelector(".quantity-btn.decrease").addEventListener("click", function() {
-                const quantityInput = document.querySelector(".quantity-input input");
-                if (quantityInput.value > 1) {
-                    quantityInput.value--;
-                }
-            });
-
-            document.querySelector(".quantity-btn.increase").addEventListener("click", function() {
-                const quantityInput = document.querySelector(".quantity-input input");
-                quantityInput.value++;
-            });
-        });
-    </script>
-    <style>
-        .product-container {
-            display: flex;
-            gap: 2rem;
-            padding: 2rem;
-            flex-wrap: nowrap;
-            overflow-x: auto;
-            scroll-behavior: smooth;
-        }
-
-        .product-container::-webkit-scrollbar {
-            height: 10px;
-        }
-
-        .product-container::-webkit-scrollbar-thumb {
-            background: #aaa;
-            border-radius: 5px;
-        }
-
-        .product-container::-webkit-scrollbar-thumb:hover {
-            background: #888;
-        }
-    </style>
 </head>
 <body>
     <header>
-        <div class="logo">
-            <a href="index.html">
-            <img src="img/dazzartnombre.png" alt="Logo">
-        </a>
-        </div>
-        <div class="barra">
-            <div class="input-contenedor">
-                <input type="text" placeholder="Buscar...">
-                <button><i class="fas fa-search"></i></button>
-            </div>
-            <div class="botones">
-                <button><i class="fa-solid fa-user"></i></button>
-                <button><i class="fas fa-shopping-cart"></i></button>
-            </div>
-        </div>
-    </header>
-      
-    <main>
-        <div class="product-container">
-            <div class="product-image">
-                <img src="img/torrechangua.png" alt="Producto" />
-            </div>
-            <div class="product-details">
-                <h1><strong>TORRE CHANGUA</strong></h1>
-                <p class="price">$10.849.990</p>
-                <div class="quantity-container">
-                    <div class="quantity-control">
-                        <button class="quantity-btn decrease">
-                            <i class="fa-solid fa-minus"></i>
-                        </button>
-                        <input type="number" value="1" min="1" readonly>
-                        <button class="quantity-btn increase">
-                            <i class="fa-solid fa-plus"></i>
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <!-- Logo -->
+                <div class="col-3 ">
+                    <img src="IMG/Captura de pantalla 2024-11-25 183458.png" alt="Logo" class="img-fluid">
+                </div>
+    
+                <!-- Menú de categorías -->
+                <div class="col-1 text-center me-5">
+                    <button class="btn btn-outline-primary" onclick="abrirMenu()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+    
+                <!-- Barra de búsqueda -->
+                <div class="col-3 text-start ms-5">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar">
+                        <button class="btn ms-2">
+                            <i class="fas fa-search"></i>
                         </button>
                     </div>
                 </div>
                 
-                <div class="actions-container">
-                    <a href="compras.html">
-                    <button class="add-to-cart-btn">+ Añadir al carrito</button></a> <a href="Detallesfactura.html">
-                    <button class="btn-72">Comprar ahora</button></a>
-                </div>
-                <p class="stock">7 disponibles</p>
-            </div>
-        </div>
-        <div class="product-buttons">
-            <button onclick="showSection('description')">Descripción</button>
-            <button onclick="showSection('additional-info')">Información Adicional</button>
-            <button onclick="showSection('reviews')">Valoraciones (1)</button>
-        </div>
-        
-        <div id="description" class="product-section">
-            <h2>Descripción del Producto</h2>
-            <p>
-                La Torre Changua es el aliado perfecto para profesionales y entusiastas de la informática. Con su chasis elegante, una fuente de poder confiable, un procesador potente y un almacenamiento equilibrado, esta torre te proporcionará el rendimiento que necesitas para llevar tus tareas y proyectos al siguiente nivel. ¡Prepárate para brillar con esta potencia tecnológica en el área profesional y en tus sesiones de entretenimiento!
-            </p>
-        </div>
-        <div id="additional-info" class="product-section" style="display:none;">
-            <h2>Información Adicional</h2>
-            <p>Conexión: <strong>Inalámbrica LIGHTSPEED y Bluetooth</strong></p>
-            <p>Compatibilidad: <strong>PC, Mac, PS5/PS4, celular y otros dispositivos de audio compatibles</strong></p>
-            <p>Transductores: <strong>40 mm</strong></p>
-            <p>Compatibilidad de sonido: <strong>Dolby Atmos y Windows Sonic</strong></p>
-            <p>Colores disponibles: <strong>Varios colores</strong></p>
-        </div>
-        <div id="reviews" class="product-section" style="display:none;">
-            <h2>Valoraciones(1)</h2>
-            <p>★★★★★</p>
-            <p>Increíbles audífonos, el sonido es espectacular y la comodidad inigualable. - Juan Pérez</p>
-        </div>
-        <section class="related-products">
-            <h2>Productos relacionados</h2>
-            <div class="products-container">
-                <div class="product-card">
-                    <img src="img/experfor.jpg" alt="Torre Wevo Revuelto">
-                    <h3>Torre Supreme</h3>
-                    <p class="price">$ 5.799.990</p>
-                    <div class="specs">
-                        <span><i class="fas fa-microchip"></i> AMD Ryzen 7 5800X</span>
-                        <span><i class="fas fa-memory"></i> RAM 16GB</span>
-                        <span><i class="fas fa-video"></i> GeForce RTX 4060 Ti</span>
-                        <span><i class="fas fa-hdd"></i> M.2 500GB</span>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="img/tpgaming.jpg" alt="Torre Wevo de Codorniz">
-                    <h3>Torre Super Ultimate</h3>
-                    <p class="price">$ 4.199.990</p>
-                    <div class="specs">
-                        <span><i class="fas fa-microchip"></i> AMD Ryzen 5 5600X</span>
-                        <span><i class="fas fa-memory"></i> RAM 16GB</span>
-                        <span><i class="fas fa-video"></i> GeForce RTX 4060</span>
-                        <span><i class="fas fa-hdd"></i> M.2 500GB</span>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="img/tsilver.png" alt="Torre Wevo Pochado">
-                    <h3>Torre Gaming Premium</h3>
-                    <p class="price">$ 6.379.990</p>
-                    <div class="specs">
-                        <span><i class="fas fa-microchip"></i> AMD Ryzen 7 7700X</span>
-                        <span><i class="fas fa-memory"></i> RAM 32GB</span>
-                        <span><i class="fas fa-video"></i> GeForce RTX 4060</span>
-                        <span><i class="fas fa-hdd"></i> M.2 500GB</span>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="img/tultimate.png" alt="Torre Wevo Tibio">
-                    <h3>Torre Silver</h3>
-                    <p class="price">$ 3.499.990</p>
-                    <div class="specs">
-                        <span><i class="fas fa-microchip"></i> AMD Ryzen 5 8600G</span>
-                        <span><i class="fas fa-memory"></i> RAM 32GB</span>
-                        <span><i class="fas fa-video"></i> GeForce RTX 4060</span>
-                        <span><i class="fas fa-hdd"></i> M.2 500GB</span>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="img/wevojamon.png" alt="Torre Oro">
-                    <h3>Torre Oro</h3>
-                    <p class="price">$ 5.899.990</p>
-                    <div class="specs">
-                        <span><i class="fas fa-microchip"></i> AMD Ryzen 5 7600</span>
-                        <span><i class="fas fa-memory"></i> RAM 32GB</span>
-                        <span><i class="fas fa-video"></i> GeForce RTX 4060 Ti</span>
-                        <span><i class="fas fa-hdd"></i> M.2 512GB</span>
-                    </div>
+    
+                <!-- Botones (Login y Carrito) -->
+                <div class="col-3 d-flex justify-content-end p-3 ml-6 mt-1">
+                    <!-- Icono de login -->
+                    <button id="login-btn" class="btn btn-outline-info">
+                        <i class="fa-solid fa-user"></i>
+                    </button>
+                    <!-- Icono de carrito -->
+                    <a href="compras.html" class="btn btn-outline-warning ">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
                 </div>
             </div>
-        </section>
-        
-        
-        
-    </main>
+        </div>
+    </header>
 
-    <footer>
-        <div class="footer-container">
-            <p>© 2024 Dazzart Components - Todos los derechos reservados</p>
-            <div class="social-media">
-                <span>Síguenos en:</span>
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <img src="img/torrechangua.png" class="img-fluid" alt="Imagen de la Torre Changua">
+            </div>
+            <div class="col-md-6">
+                <h1 class="fw-bold">TORRE CHANGUA</h1>
+                <p class="fs-4 text-primary">$10.849.990</p>
+                <div class="input-group mb-3">
+                    <button class="btn btn-outline-secondary" id="decrease">-</button>
+                    <input type="number" class="form-control text-center" value="1" min="1" readonly>
+                    <button class="btn btn-outline-secondary" id="increase">+</button>
+                </div>
+                <div class="d-grid gap-2">
+                    <a href="compras.html" class="btn btn-primary">+ Añadir al carrito</a>
+                    <a href="Detallesfactura.html" class="btn btn-success">Comprar ahora</a>
+                </div>
+                <p class="mt-3">7 disponibles</p>
+            </div>
+        </div>
+
+        <ul class="nav nav-tabs mt-5" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="desc-tab" data-bs-toggle="tab" data-bs-target="#desc" type="button">Descripción</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="info-tab" data-bs-toggle="tab" data-bs-target="#info" type="button">Información Adicional</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button">Valoraciones (1)</button>
+            </li>
+        </ul>
+
+        <div class="tab-content p-3 border">
+            <div class="tab-pane fade show active" id="desc">
+                <p>La Torre Changua es el aliado perfecto para profesionales y entusiastas de la informática...</p>
+            </div>
+            <div class="tab-pane fade" id="info">
+                <ul>
+                    <li><strong>Conexión:</strong> Inalámbrica LIGHTSPEED y Bluetooth</li>
+                    <li><strong>Compatibilidad:</strong> PC, Mac, PS5/PS4...</li>
+                </ul>
+            </div>
+            <div class="tab-pane fade" id="reviews">
+                <p>★★★★★</p>
+                <p>Increíbles audífonos, el sonido es espectacular... - Juan Pérez</p>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background-color: black; color: white;">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-12">
+                    <p class="mb-2">Síguenos en:</p>
+                    <a href="#" style="color: white; margin-right: 15px;"><i class="fa-brands fa-facebook fa-lg"></i></a>
+                    <a href="#" style="color: white; margin-right: 15px;"><i class="fa-brands fa-twitter fa-lg"></i></a>
+                    <a href="https://www.instagram.com/dazzartcomponents/" style="color: white;"><i class="fa-brands fa-instagram fa-lg"></i></a>
+                </div>
+            </div>
+            <hr class="my-3 border-light">
+            <div class="row">
+                <div class="col-12">
+                    <p class="mb-0">&copy; 2024 Dazzart Components - Todos los derechos reservados</p>
+                </div>
             </div>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('decrease').addEventListener('click', function() {
+            let input = document.querySelector('input[type=number]');
+            if (input.value > 1) input.value--;
+        });
+        document.getElementById('increase').addEventListener('click', function() {
+            let input = document.querySelector('input[type=number]');
+            input.value++;
+        });
+    </script>
 </body>
 </html>
