@@ -59,23 +59,6 @@
                 <input type="text" class="form-control" id="direccion" required>
                 <div class="invalid-feedback">Por favor, proporciona una dirección válida.</div>
             </div>
-            
-            <div class="col-md-6">
-                <label for="rol" class="form-label">Rol</label>
-                <select class="form-control" id="rol" required onchange="toggleAdminKey()">
-                    <option value="usuario">Usuario</option>
-                    <option value="admin">Administrador</option>
-                </select>
-                <div class="invalid-feedback">Selecciona un rol válido.</div>
-            </div>
-
-            <!-- Clave administrador (se mostrara solo si se elige Administrador) -->
-            <div class="col-md-6" id="adminKeyContainer" style="display: none;">
-                <label for="adminKey" class="form-label">Clave de administrador</label>
-                <input type="password" class="form-control" id="adminKey">
-                <div class="invalid-feedback">Debes ingresar la clave de administrador.</div>
-            </div>
-
             <div class="button-container">
                 <a href="index.html" class="btn btn-custom">Volver</a>
                 <button class="btn btn-custom" type="submit">Registrar</button>
