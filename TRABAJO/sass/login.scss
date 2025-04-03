@@ -1,17 +1,16 @@
 $blanco: #FFFCE8;
-$rojo: #DD403A;
 $negro: #3E363F;
 $gris: #f0f0f0;
 $gris-claro: #ccc;
-$btn-hover: #3BA0FF;
-
-
-@mixin box-shadow($shadow) {
-  box-shadow: $shadow;
-}
+$btn-hover: #188ffe;
+$link-hover: #3BA0FF;
 
 @mixin border-radius($radius) {
   border-radius: $radius;
+}
+
+@mixin box-shadow($shadow) {
+  box-shadow: $shadow;
 }
 
 @mixin btn-styles($bg, $hover-bg) {
@@ -29,7 +28,6 @@ $btn-hover: #3BA0FF;
   }
 }
 
-// Estilos del modal
 .modal-content {
   background-color: $blanco;
   padding: 20px;
@@ -82,7 +80,7 @@ $btn-hover: #3BA0FF;
     margin-right: 10px;
 
     &:hover {
-      color: $btn-hover;
+      color: $link-hover;
     }
   }
 
@@ -97,3 +95,32 @@ $btn-hover: #3BA0FF;
   }
 }
 
+.modal-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 20px;
+
+  a {
+    flex: auto;
+
+    &:first-child {
+      text-align: left;
+    }
+
+    &:last-child {
+      text-align: right;
+    }
+  }
+}
+
+.link-password, .register-link {
+  color: black;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+
+  &:hover {
+    color: $btn-hover;
+  }
+}
