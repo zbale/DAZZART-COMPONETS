@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categorías - Administrador</title>
+
+  <!-- Ícono de la página -->
+  <link rel="shortcut icon" href="IMG/DAZZART SIN LETRAS_prev_ui.png">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="../CSSA/pedido.css">
+
+
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar d-none d-md-block">
+    <h5>Dazzart Components</h5>
+    <ul class="nav flex-column">
+      <li><a href="categorias.html">Categorías</a></li>
+      <li><a href="subcategorias.html">Subcategorías</a></li>
+      <li><a href="Productos.html">Productos</a></li>
+      <li><a href="pedido.html">Pedidos</a></li>
+      <li><a href="descuentop.html">Descuentos por producto</a></li>
+      <li><a href="descuentocategoria.html">Descuento por Categoría</a></li>
+      <li>
+        <a href="#" data-bs-toggle="collapse" data-bs-target="#configMenu">Configuración</a>
+        <ul class="collapse" id="configMenu">
+          <li><a href="contraseñaadmin.html">Contraseña Admin</a></li>
+          <li><a href="gestionUs.html">Clientes</a></li>
+          <li><a href="index.html">Salir</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Botón para abrir el sidebar en móviles -->
+  <button class="btn btn-dark d-md-none m-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
+    ☰ Menú
+  </button>
+
+  <!-- Sidebar en móviles (Offcanvas) -->
+  <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="sidebarMenu">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Dazzart Components</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="nav flex-column">
+        <li><a class="nav-link text-white" href="categorias.html">Categorías</a></li>
+        <li><a class="nav-link text-white" href="subcategorias.html">Subcategorías</a></li>
+        <li><a class="nav-link text-white" href="Productos.html">Productos</a></li>
+        <li><a class="nav-link text-white" href="pedido.html">Pedidos</a></li>
+        <li><a class="nav-link text-white" href="descuentop.html">Descuentos por producto</a></li>
+        <li><a class="nav-link text-white" href="descuentocategoria.html">Descuento por Categoría</a></li>
+        <li>
+          <a class="nav-link text-white" data-bs-toggle="collapse" href="#configMenuMobile">Configuración</a>
+          <ul class="collapse" id="configMenuMobile">
+            <li><a class="nav-link text-white" href="contraseñaadmin.html">Contraseña Admin</a></li>
+            <li><a class="nav-link text-white" href="gestionUs.html">Clientes</a></li>
+            <li><a class="nav-link text-white" href="index.html">Salir</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="main-content">
+    <h1>gestion de pedidos</h1>
+
+    <!-- Tabla con DataTables -->
+    <table class="table table-striped table-hover" id="tablaCategorias">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Direccion</th>
+          <th>Nombre</th>
+          <th>Productos</th>
+          <th>cantidad de productos</th>
+          <th>total a pagar</th>
+          <th>estado</th>
+          <th>acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Tv 110a #25-90</td>
+          <td>Jose David Daza Camacho</td>
+          <td>hpprobook</td>
+          <td>1</td>
+          <td>$1.600.000</td>
+          <td>pendiente</td>
+          <td>
+            <button type="button"   onclick="window.location.href='info.html'" class="btn btn-info">Observar</button>
+         
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Tv 111a #25-90</td>
+          <td>Paula Baez</td>
+          <td>Msi rx 580 gb</td>
+          <td>1</td>
+          <td>$850000</td>
+          <td>pendiente</td>
+          <td>
+            <button type="button"   onclick="window.location.href='info.html'" class="btn btn-info">Observar</button>
+           
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- jQuery y DataTables -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+  <!-- Script para inicializar DataTables -->
+  <script>
+    $(document).ready(function() {
+      $('#tablaCategorias').DataTable({
+        "responsive": true,
+        "autoWidth": false,
+        "language": {
+          "lengthMenu": "Mostrar _MENU_ registros por página",
+          "zeroRecords": "No se encontraron resultados",
+          "info": "Mostrando página _PAGE_ de _PAGES_",
+          "infoEmpty": "No hay registros disponibles",
+          "infoFiltered": "(filtrado de _MAX_ registros en total)",
+          "search": "Buscar:",
+          "paginate": {
+            "first": "Primero",
+            "last": "Último",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
