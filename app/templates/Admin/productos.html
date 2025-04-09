@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Categorías - Administrador</title>
+  <title>Productos - Administrador</title>
 
   <!-- Ícono de la página -->
-  <link rel="shortcut icon" href="IMG/DAZZART SIN LETRAS_prev_ui.png">
+  <link rel="shortcut icon" href="../../static/IMG/DAZZART SIN LETRAS_prev_ui.png">
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -18,8 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 
   <!-- Estilos personalizados -->
-  <link rel="stylesheet" href="static/CSSA/gestionusuarios.css">
-
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSSA/gestionproductos.css') }}">
 
 </head>
 <body>
@@ -59,8 +58,8 @@
     <div class="offcanvas-body">
       <ul class="nav flex-column">
         <li><a href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
-        <li><a class="nav-link text-white" href="../Admin/subcategorias.html">Subcategorías</a></li>
-        <li><a class="nav-link text-white" href="Productos.html">Productos</a></li>
+        <li><a href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
+        <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
         <li><a class="nav-link text-white" href="pedido.html">Pedidos</a></li>
         <li><a class="nav-link text-white" href="descuentop.html">Descuentos por producto</a></li>
         <li><a class="nav-link text-white" href="descuentocategoria.html">Descuento por Categoría</a></li>
@@ -78,65 +77,53 @@
 
   <!-- Contenido principal -->
   <div class="main-content">
-    <h1>gestion de usuarios</h1>
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <h1>Gestión de Productos</h1>
+  
+      <!-- Botón para agregar producto alineado a la derecha -->
+      <a href="{{ url_for('producto_bp.agregar_producto') }}" class="btn btn-warning text-white me-2 w-15">Añadir Producto</a>
+  </div>
 
     <!-- Tabla con DataTables -->
-    <table class="table table-striped table-hover" id="tablaCategorias">
-        <thead class="table-dark">
-          <tr>
-            <th>ID</th>
-            <th>cedula</th>
-            <th>Nombre</th>
-            <th>Nombre de usuario</th>
-            <th>Correo electronico</th>
-            <th>celular</th>
-            <th>direccion</th>
-            <th>contraseña</th>
-            <th>rol</th>
-            <th>acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>1001201758</td>
-            <td>Dante juan camilo</td>
-            <td>SuperiorLegend123</td>
-            <td>Dante@gmail.com</td>
-            <td>3213446510</td>
-            <td>tv 110a #25-90</td>
-            <td>e1ea314311</td>
-            <td>Administrador</td>
-              <td>
-                <button type="button"  onclick="window.location.href='añadirusuario.html'"class="btn btn-warning text-white">Añadir</button>
-                <button type="button" onclick="window.location.href='actualizarusuario.html'"class="btn btn-success">Editar</button>
-                <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
-              </td>
-           
-          
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>1001201750</td>
-            <td>Maria paula baez</td>
-            <td>Paula Baez</td>
-            <td>mpau@gmail.com</td>
-            <td>3112234559</td>
-            <td>tv 112a #55-90</td>
-            <td>#!24578aA</td>
-            <td>Cliente</td>
-              <td>
-                <button type="button"  onclick="window.location.href='añadirusuario.html'"class="btn btn-warning text-white">Añadir</button>
-                <button type="button" onclick="window.location.href='actualizarusuario.html'"class="btn btn-success">Editar</button>
-                <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
-              </td>
-             
-      
-          </tr>
-          
-          
-        </tbody>
-      </table>
+    <table class="table table-striped table-hover" id="tablaProductos">
+      <thead class="table-dark">
+        <tr>
+          <th>ID Producto</th>
+          <th>Nombre</th>
+          <th>Imagen</th>  <!-- Nueva columna para la imagen -->
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Stock</th>
+          <th>Categoría</th>
+          <th>Fecha de Creación</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for producto in productos %}
+        <tr>
+          <td>{{ producto.id_producto }}</td>
+          <td>{{ producto.nombre }}</td>
+          <td>
+            <img src="{{ url_for('static', filename='IMG/1-2.png') }}" alt="Producto X" width="100" height="100">
+          </td>
+          <td>{{ producto.descripcion }}</td>
+          <td>{{ producto.precio }}</td>
+          <td>{{ producto.stock }}</td>
+          <td>{{ producto.id_categoria }}</td>
+          <td>{{ producto.fecha_creacion }}</td>
+          <td>
+            <div class="d-flex">
+              <a href="{{ url_for('producto_bp.editar_producto', id_producto=producto.id_producto) }}" class="btn btn-success me-2">Editar</a>
+              <form method="POST" action="{{ url_for('producto_bp.eliminar_producto', id_producto=producto.id_producto) }}" onsubmit="return confirm('¿Estás seguro que deseas eliminar este producto?');">
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 
   <!-- Bootstrap JS -->
@@ -149,12 +136,12 @@
 
   <!-- Script para inicializar DataTables -->
   <script>
-      <!-- Script para inicializar DataTables -->
-
     $(document).ready(function () {
-      $('#tablaCategorias').DataTable({
+      $('#tablaProductos').DataTable({
         "responsive": true,
         "autoWidth": false,
+        "pageLength": 5,
+        "lengthMenu": [ [5, 10, 15], [5, 10, 15] ],
         "language": {
           "lengthMenu": "Mostrar _MENU_ registros por página",
           "zeroRecords": "No se encontraron resultados",
@@ -171,40 +158,8 @@
         }
       });
     });
-    // <!-- Script para inicializar DataTables -->
-    document.addEventListener('DOMContentLoaded', () => {
-      // Seleccionar todos los botones de eliminar
-      const deleteButtons = document.querySelectorAll('.btn-danger');
-  
-      deleteButtons.forEach(button => {
-        button.addEventListener('click', (event) => {
-          event.preventDefault();
-  
-          // Obtener el ID de la fila desde el atributo data-id (puedes modificar según tu necesidad)
-          const rowId = button.getAttribute('data-id');
-  
-          Swal.fire({
-            title: '¿Desea eliminar?',
-            text: 'Esta acción no se puede deshacer.',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Sí, eliminar',
-            cancelButtonText: 'No, cancelar'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              // Redirigir a la página de eliminación con el ID correspondiente (si aplica)
-              window.location.href = `eliminarusuario.html?id=${rowId}`;
-            }
-          });
-        });
-      });
-    });
-  
-  
   </script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
 </body>
 </html>
+

@@ -1,39 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Categorías - Administrador</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Subcategorías - Administrador</title>
 
-  <!-- Ícono de la página -->
-  <link rel="shortcut icon" href="IMG/DAZZART SIN LETRAS_prev_ui.png">
-
-  <!-- Bootstrap CSS -->
+  <link rel="shortcut icon" href="../../static/IMG/DAZZART SIN LETRAS_prev_ui.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- DataTables CSS -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap"
-    rel="stylesheet">
-
-  <!-- Estilos personalizados -->
-  <link rel="stylesheet" href="../CSSA/subcategorias.css">
-
-
+  <link rel="stylesheet" href="../../static/CSSA/subcategorias.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
-
 <body>
+  <div class="container-fluid">
 
   <!-- Sidebar -->
   <div class="sidebar d-none d-md-block">
     <h5>Dazzart Components</h5>
     <ul class="nav flex-column">
-      <li><a href="categorias.html">Categorías</a></li>
-      <li><a href="subcategorias.html">Subcategorías</a></li>
-      <li><a href="Productos.html">Productos</a></li>
+      <li><a href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
+      <li><a class="active" href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
+      <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
       <li><a href="pedido.html">Pedidos</a></li>
       <li><a href="descuentop.html">Descuentos por producto</a></li>
       <li><a href="descuentocategoria.html">Descuento por Categoría</a></li>
@@ -48,12 +35,10 @@
     </ul>
   </div>
 
-  <!-- Botón para abrir el sidebar en móviles -->
+  <!-- Sidebar responsive -->
   <button class="btn btn-dark d-md-none m-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
     ☰ Menú
   </button>
-
-  <!-- Sidebar en móviles (Offcanvas) -->
   <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="sidebarMenu">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title">Dazzart Components</h5>
@@ -61,9 +46,9 @@
     </div>
     <div class="offcanvas-body">
       <ul class="nav flex-column">
-        <li><a class="nav-link text-white" href="categorias.html">Categorías</a></li>
-        <li><a class="nav-link text-white" href="subcategorias.html">Subcategorías</a></li>
-        <li><a class="nav-link text-white" href="Productos.html">Productos</a></li>
+        <li><a class="nav-link text-white" href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
+        <li><a class="nav-link text-white active" href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
+        <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
         <li><a class="nav-link text-white" href="pedido.html">Pedidos</a></li>
         <li><a class="nav-link text-white" href="descuentop.html">Descuentos por producto</a></li>
         <li><a class="nav-link text-white" href="descuentocategoria.html">Descuento por Categoría</a></li>
@@ -79,175 +64,109 @@
     </div>
   </div>
 
-  <!-- Contenido principal -->
-  <div class="main-content">
-    <h1>SubCategorías</h1>
-
-    <!-- Tabla con DataTables -->
-    <table class="table table-striped table-hover" id="tablaCategorias">
-      <thead class="table-dark">
-        <tr>
-          <th>ID</th>
-          <th>Categoría</th>
-          <th>subcategoria</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>ordenadores</td>
-          <td>Portatiles</td>
-          <td>
-            <button type="button" onclick="window.location.href='añadirsubcategorias.html'"
-              class="btn btn-warning text-white">Añadir</button>
-            <button type="button" onclick="window.location.href='actualizarsub.html'"
-              class="btn btn-success">Editar</button>
-              <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>parlantes</td>
-          <td>Productos para ensamblar un computador.</td>
-          <td>
-            <button type="button" onclick="window.location.href='añadirsubcategorias.html'"
-              class="btn btn-warning text-white">Añadir</button>
-            <button type="button" onclick="window.location.href='actualizarsub.html'"
-              class="btn btn-success">Editar</button>
-              <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
-          </td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Componentes</td>
-          <td>tarjetas graficas</td>
-          <td>
-            <button type="button" onclick="window.location.href='añadirsubcategorias.html'"
-              class="btn btn-warning text-white">Añadir</button>
-            <button type="button" onclick="window.location.href='actualizarsub.html'"
-              class="btn btn-success">Editar</button>
-              <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
-          </td>
-        </tr>
-        <tr>
-          <td>4</td>
-          <td>Audio</td>
-          <td>Altavoces</td>
-          <td>
-            <button type="button" onclick="window.location.href='añadirsubcategorias.html'"
-              class="btn btn-warning text-white">Añadir</button>
-            <button type="button" onclick="window.location.href='actualizarsub.html'"
-              class="btn btn-success">Editar</button>
-              <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
-          </td>
-        </tr>
-        <tr>
-          <td>5</td>
-          <td>Monitores</td>
-          <td>LED</td>
-          <td>
-            <button type="button" onclick="window.location.href='añadirsubcategorias.html'"
-              class="btn btn-warning text-white">Añadir</button>
-            <button type="button" onclick="window.location.href='actualizarsub.html'"
-              class="btn btn-success">Editar</button>
-              <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
-          </td>
-        </tr>
-        <tr>
-          <td>6</td>
-          <td>teclados y ratones</td>
-          <td>teclados mecanicos</td>
-          <td>
-            <button type="button" onclick="window.location.href='añadirsubcategorias.html'"
-              class="btn btn-warning text-white">Añadir</button>
-            <button type="button" onclick="window.location.href='actualizarsub.html'"
-              class="btn btn-success">Editar</button>
-              <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
-          </td>
-        </tr>
-        <tr>
-          <td>7</td>
-          <td>Audio</td>
-          <td>Auriculares</td>
-          <td>
-            <button type="button" onclick="window.location.href='añadirsubcategorias.html'"
-              class="btn btn-warning text-white">Añadir</button>
-            <button type="button" onclick="window.location.href='actualizarsub.html'"
-              class="btn btn-success">Editar</button>
-            <button type="button" class="btn btn-danger delete-btn" data-id="1">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+ <!-- Contenido principal -->
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-4">
+  <div class="mb-4">
+    <h2>Agregar nueva subcategoría</h2>
+    <form action="{{ url_for('subcategoria_bp.agregar_subcategoria') }}" method="POST" class="row g-3">
+      <div class="col-md-4">
+        <select name="id_categoria" class="form-select" required>
+          <option value="">Selecciona una categoría</option>
+          {% for categoria in categorias %}
+            <option value="{{ categoria.id_categoria }}">{{ categoria.nombre_categoria }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-md-4">
+        <input type="text" name="nombre" class="form-control" placeholder="Nombre de la subcategoría" required>
+      </div>
+      <div class="col-md-2">
+        <input type="text" name="descripcion" class="form-control" placeholder="Descripción" required>
+      </div>
+      <div class="col-md-2">
+        <button type="submit" class="btn btn-warning text-white me-2 w-75">Añadir</button>
+      </div>
+    </form>
   </div>
 
-  <!-- Bootstrap JS -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Tabla por categoría -->
+    {% for nombre_categoria, subcategorias in subcategorias_por_categoria.items() %}
+      <h4 class="mt-4">{{ nombre_categoria }}</h4>
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover datatable">
+          <thead class="table-dark">
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Descripción</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for sub in subcategorias %}
+            <tr>
+              <td>{{ sub.id_subcategoria }}</td>
+              <td>{{ sub.nombre_subcategoria }}</td>
+              <td>{{ sub.descripcion_subcategoria }}</td>
+              <td>
+                <div class="d-flex flex-column gap-2">
+                  <!-- Formulario de edición -->
+                  <form action="{{ url_for('subcategoria_bp.editar_subcategoria', id=sub.id_subcategoria) }}" method="POST">
+                    <input type="text" name="nombre" value="{{ sub.nombre_subcategoria }}" class="form-control form-control-sm mb-2" required>
+                    <input type="text" name="descripcion" value="{{ sub.descripcion_subcategoria }}" class="form-control form-control-sm mb-2" required>
+                    <select name="id_categoria" class="form-control form-control-sm mb-2">
+                      {% for categoria in categorias %}
+                        <option value="{{ categoria.id_categoria }}" {% if categoria.id_categoria == sub.id_categoria %}selected{% endif %}>
+                          {{ categoria.nombre_categoria }}
+                        </option>
+                      {% endfor %}
+                    </select>
+                    <button class="btn btn-success btn-sm w-100">Editar</button>
+                  </form>
+                  <!-- Formulario de eliminación -->
+                  <form action="{{ url_for('subcategoria_bp.eliminar_subcategoria', id=sub.id_subcategoria) }}" method="POST">
+                    <button class="btn btn-danger btn-sm w-100" onclick="return confirm('¿Eliminar esta subcategoría?')">Eliminar</button>
+                  </form>
+                </div>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% endfor %}
+</main>
 
-  <!-- jQuery y DataTables -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
-  <!-- Script para inicializar DataTables -->
-  <script>
-    $(document).ready(function () {
-      $('#tablaCategorias').DataTable({
-        "responsive": true,
-        "autoWidth": false,
-        "language": {
-          "lengthMenu": "Mostrar _MENU_ registros por página",
-          "zeroRecords": "No se encontraron resultados",
-          "info": "Mostrando página _PAGE_ de _PAGES_",
-          "infoEmpty": "No hay registros disponibles",
-          "infoFiltered": "(filtrado de _MAX_ registros en total)",
-          "search": "Buscar:",
-          "paginate": {
-            "first": "Primero",
-            "last": "Último",
-            "next": "Siguiente",
-            "previous": "Anterior"
-          }
+<script>
+  $(document).ready(function () {
+    $('.datatable').DataTable({
+      responsive: true,
+      autoWidth: false,
+      pageLength: 2,
+      lengthMenu: [[1, 2, 6, 8, 10, 20], [1, 2, 6, 8, 10, 20]],
+      language: {
+        lengthMenu: "Mostrar _MENU_ registros por página",
+        zeroRecords: "No se encontraron resultados",
+        info: "Mostrando página _PAGE_ de _PAGES_",
+        infoEmpty: "No hay registros disponibles",
+        infoFiltered: "(filtrado de _MAX_ registros en total)",
+        search: "Buscar:",
+        paginate: {
+          first: "Primero",
+          last: "Último",
+          next: "Siguiente",
+          previous: "Anterior"
         }
-      });
+      }
     });
-
-    document.addEventListener('DOMContentLoaded', () => {
-      // Seleccionar todos los botones de eliminar
-      const deleteButtons = document.querySelectorAll('.btn-danger');
-
-      deleteButtons.forEach(button => {
-        button.addEventListener('click', (event) => {
-          event.preventDefault();
-
-          // Obtener el ID de la fila desde el atributo data-id (puedes modificar)
-
-          const rowId = button.getAttribute('data-id');
-
-          Swal.fire({
-            title: '¿Desea eliminar?',
-            text: 'Esta acción no se puede deshacer.',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#d33',
-            cancelButtonColor: '#3085d6',
-            confirmButtonText: 'Sí, eliminar',
-            cancelButtonText: 'No, cancelar'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              // Redirigir a la página de eliminación con el ID correspondiente (si aplica)
-              window.location.href = `Eliminarsubcategorias.html?id=${rowId}`;
-            }
-          });
-        });
-      });
-    });
-
-
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  });
+</script>
 
 </body>
-
 </html>
