@@ -105,8 +105,14 @@
           <td>{{ producto.id_producto }}</td>
           <td>{{ producto.nombre }}</td>
           <td>
-            <img src="{{ url_for('static', filename='IMG/1-2.png') }}" alt="Producto X" width="100" height="100">
-          </td>
+            {% if producto['imagen'] %}
+                <!-- Si el producto tiene imagen, la mostramos -->
+                <img src="{{ url_for('static', filename='IMG/' + producto['imagen']) }}" alt="{{ producto['nombre'] }}" width="100" height="100">
+            {% else %}
+                <!-- Si no tiene imagen, mostramos una imagen predeterminada -->
+                <img src="{{ url_for('static', filename='IMG/default.png') }}" alt="Imagen predeterminada" width="100" height="100">
+            {% endif %}
+        </td>
           <td>{{ producto.descripcion }}</td>
           <td>{{ producto.precio }}</td>
           <td>{{ producto.stock }}</td>

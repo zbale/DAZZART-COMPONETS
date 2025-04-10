@@ -20,11 +20,19 @@ def create_app():
     # Importar y registrar los blueprints
     from app.controllers.main_controller import main_bp
     from app.controllers.user_controller import user_bp
-    from app.controllers.categorias import categoria_bp
+    from app.controllers.categorias_controller import categoria_bp
+    from app.controllers.subcategorias_controller import subcategoria_bp
+    from app.controllers.productos_controller import producto_bp
+
+
 
     app.register_blueprint(main_bp)
     app.register_blueprint(user_bp)
     app.register_blueprint(categoria_bp)
+    app.register_blueprint(subcategoria_bp)
+    app.register_blueprint(producto_bp)
+
+
 
     # Agregar la conexión a la base de datos como un atributo de la aplicación
     app.connection = connection
