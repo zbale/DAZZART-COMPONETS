@@ -20,8 +20,8 @@
       <div class="sidebar d-none d-md-block">
           <h5 class="text-white">Dazzart Components</h5>
           <ul class="nav flex-column">
-            <li><a href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
-            <li><a href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
             <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
             <li class="nav-item"><a class="nav-link text-white" href="pedido.html">Pedidos</a></li>
             <li class="nav-item"><a class="nav-link text-white" href="descuentop.html">Descuentos por producto</a></li>
@@ -51,8 +51,8 @@
         </div>
         <div class="offcanvas-body">
           <ul class="nav flex-column">
-            <li><a href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
-            <li><a href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
+            <li><a class="nav-link text-white" href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
+            <li><a class="nav-link text-white" href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
             <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
             <li><a class="nav-link text-white" href="pedido.html">Pedidos</a></li>
             <li><a class="nav-link text-white" href="descuentop.html">Descuentos por producto</a></li>
