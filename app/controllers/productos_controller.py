@@ -1,19 +1,19 @@
-from flask import Blueprint, render_template, request, redirect, url_for, current_app, flash, send_from_directory
-from werkzeug.utils import secure_filename
+from flask import Blueprint, render_template, request, redirect, url_for, current_app, flash
+from flask_bcrypt import Bcrypt
+from flask import session
 import os
-import pymysql
+
 
 producto_bp = Blueprint('producto_bp', __name__)
 
-# Ruta para agregar un nuevo producto
+from flask import render_template, request, redirect, url_for, flash, current_app
+import pymysql
+
+
 @producto_bp.route('/agregar_producto', methods=['GET', 'POST'])
 def agregar_producto():
-    img_folder = os.path.join(current_app.root_path, 'static', 'IMG')
-    imagenes = [f for f in os.listdir(img_folder) if os.path.isfile(os.path.join(img_folder, f))]
-
-    connection = current_app.connection
-
     if request.method == 'POST':
+        # Recuperamos los datos del formulario
         numero_serial = request.form['numero_serial']
         nombre = request.form['nombre']
         descripcion = request.form['descripcion']
@@ -22,44 +22,36 @@ def agregar_producto():
         id_categoria = request.form['id_categoria']
         fecha_creacion = request.form['fecha_creacion']
 
-        # Manejo de imagen seleccionada o nueva subida
-        imagen_seleccionada = request.form.get('imagen')
-        imagen_subida = request.files.get('imagen_subida')
-
-        imagen_filename = None
-        if imagen_subida and imagen_subida.filename:
-            imagen_filename = secure_filename(imagen_subida.filename)
-            imagen_subida.save(os.path.join(img_folder, imagen_filename))
-        elif imagen_seleccionada:
-            imagen_filename = imagen_seleccionada
-
+        # Insertamos el nuevo producto en la base de datos
+        connection = current_app.connection  # Suponiendo que tienes configurada la conexión
         try:
             with connection.cursor() as cursor:
                 cursor.execute("""
-                    INSERT INTO producto (numero_serial, nombre, descripcion, precio, stock, id_categoria, fecha_creacion, imagen)
-                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-                """, (numero_serial, nombre, descripcion, precio, stock, id_categoria, fecha_creacion, imagen_filename))
+                    INSERT INTO producto (numero_serial, nombre, descripcion, precio, stock, id_categoria, fecha_creacion)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s)
+                """, (numero_serial, nombre, descripcion, precio, stock, id_categoria, fecha_creacion))
                 connection.commit()
                 flash('Producto agregado correctamente', 'success')
         except Exception as e:
-            connection.rollback()
             flash(f'Error al agregar producto: {e}', 'danger')
+            connection.rollback()
 
-        return redirect(url_for('producto_bp.listar_productos'))
+            return redirect(url_for('producto_bp.listar_productos'))
 
-    # Cargar categorías
+    # Obtener las categorías desde la base de datos (ajusta esto según tu estructura de base de datos)
+    connection = current_app.connection
     categorias = []
     try:
         with connection.cursor() as cursor:
-            cursor.execute("SELECT id_categoria, nombre_categoria FROM categoria")
-            categorias = cursor.fetchall()
+            cursor.execute("SELECT id_categoria, nombre_categoria FROM categoria")  # Ajusta la consulta según tu tabla y columnas
+            categorias = cursor.fetchall()  # Obtenemos todas las categorías
     except Exception as e:
         flash(f'Error al obtener categorías: {e}', 'danger')
 
-    return render_template('Admin/añadirproducto.html', categorias=categorias, imagenes=imagenes)
+    # Pasamos las categorías al template
+    return render_template('Admin/añadirproducto.html', categorias=categorias)
 
 
-# Ruta para listar todos los productos
 @producto_bp.route('/productos')
 def listar_productos():
     connection = current_app.connection
@@ -70,30 +62,26 @@ def listar_productos():
     except Exception as e:
         flash(f'Error al obtener productos: {e}', 'danger')
 
-    # Obtener imágenes disponibles
-    img_folder = os.path.join(current_app.root_path, 'static', 'IMG')
-    imagenes = [f for f in os.listdir(img_folder) if os.path.isfile(os.path.join(img_folder, f))]
-
-    return render_template('Admin/productos.html', productos=productos, imagenes=imagenes)
+    return render_template('Admin/productos.html', productos=productos)
 
 
-# Ruta para editar un producto existente
 @producto_bp.route('/productos/editar/<int:id_producto>', methods=['GET', 'POST'])
 def editar_producto(id_producto):
     connection = current_app.connection
-    img_folder = os.path.join(current_app.root_path, 'static', 'IMG')
-    imagenes = [f for f in os.listdir(img_folder) if os.path.isfile(os.path.join(img_folder, f))]
-
+    # Si el método es GET, obtenemos el producto y las categorías
     if request.method == 'GET':
         with connection.cursor() as cursor:
             cursor.execute("SELECT * FROM producto WHERE id_producto = %s", (id_producto,))
-            producto = cursor.fetchone()
+            producto = cursor.fetchone()  # Recupera un solo producto
 
+            # Obtener todas las categorías para mostrar en el formulario
             cursor.execute("SELECT * FROM categoria")
-            categorias = cursor.fetchall()
+            categorias = cursor.fetchall()  # Recupera todas las categorías
 
-        return render_template('Admin/actualizarpro.html', producto=producto, categorias=categorias, imagenes=imagenes)
+        # Pasar el producto y las categorías al template
+        return render_template('Admin/actualizarpro.html', producto=producto, categorias=categorias)
 
+    # Si el método es POST, procesamos la actualización
     if request.method == 'POST':
         numero_serial = request.form['numero_serial']
         nombre = request.form['nombre']
@@ -101,22 +89,20 @@ def editar_producto(id_producto):
         precio = request.form['precio']
         stock = request.form['stock']
         id_categoria = request.form['id_categoria']
+        imagen = request.files['imagen']  # Puede que necesites gestionar la carga de archivos
 
-        imagen_seleccionada = request.form.get('imagen')
-        imagen_subida = request.files.get('imagen_subida')
+        # Verificar si se subió una nueva imagen
+        if imagen:
+            # Asegurarse de que la carpeta 'static/IMG/' exista
+            images_folder = os.path.join(current_app.root_path, 'static', 'IMG')
+            if not os.path.exists(images_folder):
+                os.makedirs(images_folder)  # Crear la carpeta si no existe
 
-        if imagen_subida and imagen_subida.filename:
-            imagen_filename = secure_filename(imagen_subida.filename)
-            imagen_subida.save(os.path.join(img_folder, imagen_filename))
-        elif imagen_seleccionada:
-            imagen_filename = imagen_seleccionada
-        else:
-            with connection.cursor() as cursor:
-                cursor.execute("SELECT imagen FROM producto WHERE id_producto = %s", (id_producto,))
-                producto_actual = cursor.fetchone()
-                imagen_filename = producto_actual['imagen'] if producto_actual else None
+            imagen_filename = imagen.filename
+            imagen.save(os.path.join(images_folder, imagen_filename))  # Guardar imagen en la carpeta
 
         with connection.cursor() as cursor:
+            # Actualizar el producto en la base de datos
             query = """
                 UPDATE producto
                 SET numero_serial = %s, nombre = %s, descripcion = %s, precio = %s, 
@@ -126,22 +112,50 @@ def editar_producto(id_producto):
             cursor.execute(query, (numero_serial, nombre, descripcion, precio, stock, id_categoria, imagen_filename, id_producto))
             connection.commit()
 
-        flash('Producto actualizado correctamente', 'success')
         return redirect(url_for('producto_bp.listar_productos'))
 
+@producto_bp.route('/productos/editar/<int:id_producto>', methods=['POST'])
+def actualizar_producto(id_producto):
+    # Recuperamos los datos del formulario de actualización
+    numero_serial = request.form['numero_serial']
+    nombre = request.form['nombre']
+    descripcion = request.form['descripcion']
+    precio = request.form['precio']
+    stock = request.form['stock']
+    id_categoria = request.form['id_categoria']
+    fecha_creacion = request.form['fecha_creacion']
 
-# Ruta para eliminar un producto
+    # Realizamos la actualización en la base de datos
+    query = """
+        UPDATE producto SET
+            numero_serial=%s,
+            nombre=%s,
+            descripcion=%s,
+            precio=%s,
+            stock=%s,
+            id_categoria=%s,
+            fecha_creacion=%s
+        WHERE id_producto=%s
+    """
+    params = (numero_serial, nombre, descripcion, precio, stock, id_categoria, fecha_creacion, id_producto)
+
+    connection = current_app.connection
+    try:
+        with connection.cursor() as cursor:
+            cursor.execute(query, params)
+            connection.commit()
+            flash('Producto actualizado correctamente', 'success')
+    except Exception as e:
+        flash(f'Error al actualizar producto: {e}', 'danger')
+
+    return redirect(url_for('producto_bp.listar_productos'))
+
+
 @producto_bp.route('/productos/eliminar/<int:id_producto>', methods=['POST'])
 def eliminar_producto(id_producto):
     connection = current_app.connection
     try:
         with connection.cursor() as cursor:
-            cursor.execute("SELECT imagen FROM producto WHERE id_producto = %s", (id_producto,))
-            producto = cursor.fetchone()
-            if producto and producto['imagen']:
-                imagen_path = os.path.join(current_app.root_path, 'static', 'IMG', producto['imagen'])
-                if os.path.exists(imagen_path):
-                    os.remove(imagen_path)
             cursor.execute("DELETE FROM producto WHERE id_producto = %s", (id_producto,))
             connection.commit()
             flash('Producto eliminado correctamente', 'success')
@@ -149,13 +163,3 @@ def eliminar_producto(id_producto):
         flash(f'Error al eliminar producto: {e}', 'danger')
 
     return redirect(url_for('producto_bp.listar_productos'))
-
-
-# Ruta para servir imágenes desde la carpeta estática
-@producto_bp.route('/img/<filename>')
-def serve_image(filename):
-    img_folder = os.path.join(current_app.root_path, 'static', 'IMG')
-    if os.path.exists(os.path.join(img_folder, filename)):
-        return send_from_directory(img_folder, filename)
-    else:
-        return "Imagen no encontrada", 404
