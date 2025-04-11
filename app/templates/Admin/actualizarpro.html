@@ -105,8 +105,9 @@
             <label for="stock" class="form-label">Unidades</label>
             <input type="text" class="form-control" id="stock" name="stock" value="{{ producto.stock }}" placeholder="20">
           </div>
+           
           <div class="mb-3">
-            <label for="categoria" class="form-label">Categoría</label>
+            <label for="id_categoria" class="form-label">Categoría</label>
             <select name="id_categoria" class="form-select" required>
               <option value="">Selecciona una categoría</option>
               {% for categoria in categorias %}
@@ -114,12 +115,33 @@
               {% endfor %}
             </select>
           </div>
+
+            <div class="mb-3">
+            <label for="fecha_creacion" class="form-label">Fecha de Creación</label>
+            <input type="date" class="form-control" id="fecha_creacion" name="fecha_creacion" required>
+          </div>
           <div class="mb-3">
             <label for="imagen" class="form-label">Imagen del producto</label>
-            <input type="file" class="form-control" id="imagen" name="imagen">
-            <img src="{{ url_for('static', filename=producto.imagen) }}" alt="Imagen del producto" width="100" height="100">
+          
+            <!-- Mostrar la imagen actual si está disponible -->
+            {% if producto.imagen %}
+              <div class="mb-3">
+                <label for="imagen_actual" class="form-label">Imagen actual:</label>
+                <img src="{{ url_for('static', filename='IMG/' + producto.imagen) }}" alt="Imagen del producto" width="100">
+              </div>
+            {% endif %}
+          
+            <!-- Campo de selección de imágenes -->
+            <div class="mb-3">
+              <label for="imagen" class="form-label">Selecciona una imagen existente:</label>
+              <select class="form-control" id="imagen" name="imagen">
+                  <option value="">Selecciona una imagen</option>
+                  {% for imagen in imagenes %}
+                      <option value="{{ imagen }}">{{ imagen }}</option>
+                  {% endfor %}
+              </select>
           </div>
-        </div>
+          
 
         <!-- Botón de actualización -->
         <div class="text-center mt-4">
