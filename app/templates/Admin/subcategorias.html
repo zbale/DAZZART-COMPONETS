@@ -28,8 +28,9 @@
         <a href="#" data-bs-toggle="collapse" data-bs-target="#configMenu">Configuración</a>
         <ul class="collapse" id="configMenu">
           <li><a href="contraseñaadmin.html">Contraseña Admin</a></li>
-          <li><a href="gestionUs.html">Clientes</a></li>
-          <li><a href="index.html">Salir</a></li>
+          <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
+          <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>
+          
         </ul>
       </li>
     </ul>
@@ -56,8 +57,9 @@
           <a class="nav-link text-white" data-bs-toggle="collapse" href="#configMenuMobile">Configuración</a>
           <ul class="collapse" id="configMenuMobile">
             <li><a class="nav-link text-white" href="contraseñaadmin.html">Contraseña Admin</a></li>
-            <li><a class="nav-link text-white" href="gestionUs.html">Clientes</a></li>
-            <li><a class="nav-link text-white" href="index.html">Salir</a></li>
+            <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
+            <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>
+            
           </ul>
         </li>
       </ul>
