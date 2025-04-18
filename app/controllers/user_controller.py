@@ -84,7 +84,7 @@ def listar_usuarios():
     connection = current_app.connection
     try:
         with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM usuario WHERE rol != 'admin'")
+            cursor.execute("SELECT * FROM usuario")
             usuarios = cursor.fetchall()
     except Exception as e:
         return str(e)
@@ -181,3 +181,20 @@ def actualizar_usuario(id_usuario):
         connection.commit()
 
     return redirect(url_for('user_bp.listar_usuarios'))
+
+
+@user_bp.route("/compras")
+def compras():
+    return render_template("Cliente/compras.html")
+
+@user_bp.route("/detallefactura")
+def detallefactura():
+    return render_template("Cliente/Detallesfactura.html")
+
+@user_bp.route("/producto")
+def producto():
+    return render_template("Cliente/producto.html")
+
+@user_bp.route("/interfazpro")
+def interfazpro():
+    return render_template("Cliente/interfazproductos.html")
