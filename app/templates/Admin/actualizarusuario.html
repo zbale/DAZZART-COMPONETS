@@ -121,11 +121,9 @@
     
       <div class="mb-3">
         <label for="rol" class="form-label">Rol</label>
-        <select class="form-select" name="rol">
-          <option value="admin" {% if usuario.rol == 'admin' %}selected{% endif %}>Administrador</option>
-          <option value="cliente" {% if usuario.rol == 'cliente' %}selected{% endif %}>Cliente</option>
-        </select>
+        <input type="text" class="form-control" name="rol" value="{{ usuario.rol }}" readonly>
       </div>
+       
     
       <div class="text-center mt-4">
         <button type="submit" class="btn btn-dark">Actualizar</button>

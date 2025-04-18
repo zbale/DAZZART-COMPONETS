@@ -84,7 +84,7 @@ def listar_usuarios():
     connection = current_app.connection
     try:
         with connection.cursor() as cursor:
-            cursor.execute("SELECT * FROM usuario WHERE rol != 'admin'")
+            cursor.execute("SELECT * FROM usuario")
             usuarios = cursor.fetchall()
     except Exception as e:
         return str(e)
