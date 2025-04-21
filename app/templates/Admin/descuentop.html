@@ -1,3 +1,7 @@
+<!-- 
+este archivo no vaaaaaaaaaaaaaaaaaaaaaaaaaaaaa -->
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -28,18 +32,18 @@
   <div class="sidebar d-none d-md-block">
     <h5>Dazzart Components</h5>
     <ul class="nav flex-column">
-      <li><a href="categorias.html">Categorías</a></li>
-      <li><a href="subcategorias.html">Subcategorías</a></li>
-      <li><a href="Productos.html">Productos</a></li>
-      <li><a href="pedido.html">Pedidos</a></li>
-      <li><a href="descuentop.html">Descuentos por producto</a></li>
-      <li><a href="descuentocategoria.html">Descuento por Categoría</a></li>
+      <li><a href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
+      <li><a href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
+      <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
+      <li><a href="{{ url_for('admin.admin_pedidos') }}">Pedidos</a></li>
+      <li><a href="{{ url_for('admin.admin_descuento_producto') }}">Descuentos por producto</a></li>
+      <li><a href="{{ url_for('admin.admin_descuento_categoria') }}">Descuento por Categoría</a></li>
       <li>
         <a href="#" data-bs-toggle="collapse" data-bs-target="#configMenu">Configuración</a>
         <ul class="collapse" id="configMenu">
           <li><a href="contraseñaadmin.html">Contraseña Admin</a></li>
-          <li><a href="gestionUs.html">Clientes</a></li>
-          <li><a href="../index/index.html">Salir</a></li>
+          <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
+          <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>          
         </ul>
       </li>
     </ul>

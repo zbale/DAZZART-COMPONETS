@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedidos - Administrador</title>
+
+  <!-- Ícono de la página -->
+  <link rel="shortcut icon" href="{{ url_for('static', filename='img/DAZZART SIN LETRAS_prev_ui.png') }}">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSSA/pedido.css') }}">
+</head>
+<body>
+
+  <!-- Sidebar (puedes personalizar o eliminar según tu plantilla) -->
+  <div class="sidebar d-none d-md-block">
+    <h5>Dazzart Components</h5>
+    <ul class="nav flex-column">
+      <li><a href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
+      <li><a href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
+      <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
+      <li><a href="{{ url_for('admin.admin_pedidos') }}">Pedidos</a></li>
+      <li><a href="{{ url_for('admin.admin_descuento_producto') }}">Descuentos por producto</a></li>
+      <li><a href="{{ url_for('admin.admin_descuento_categoria') }}">Descuento por Categoría</a></li>
+      <li>
+        <a href="#" data-bs-toggle="collapse" data-bs-target="#configMenu">Configuración</a>
+        <ul class="collapse" id="configMenu">
+          <li><a href="contraseñaadmin.html">Contraseña Admin</a></li>
+          <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
+          <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>          
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="main-content p-4">
+    <h1>Gestión de pedidos</h1>
+
+    <table class="table table-striped table-hover" id="tablaPedidos">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Dirección</th>
+          <th>Nombre</th>
+          <th>Productos</th>
+          <th>Cantidad de productos</th>
+          <th>Total a pagar</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for pedido in pedidos %}
+        <tr>
+          <td>{{ pedido.id_factura }}</td>
+          <td>{{ pedido.direccion }}</td>
+          <td>{{ pedido.nombre_cliente }}</td>
+          <td>{{ pedido.productos }}</td>
+          <td>{{ pedido.total_productos }}</td>
+          <td>${{ "{:,.2f}".format(pedido.total) }}</td>
+          <td>{{ pedido.estado }}</td>
+          <td>
+            <button type="button" onclick="window.location.href='/admin/pedidos/{{ pedido.id_factura }}'" class="btn btn-info">Observar</button>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- jQuery y DataTables -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+  <!-- Script para inicializar DataTables -->
+  <script>
+    $(document).ready(function() {
+      $('#tablaPedidos').DataTable({
+        "responsive": true,
+        "autoWidth": false,
+        "language": {
+          "lengthMenu": "Mostrar _MENU_ registros por página",
+          "zeroRecords": "No se encontraron resultados",
+          "info": "Mostrando página _PAGE_ de _PAGES_",
+          "infoEmpty": "No hay registros disponibles",
+          "infoFiltered": "(filtrado de _MAX_ registros en total)",
+          "search": "Buscar:",
+          "paginate": {
+            "first": "Primero",
+            "last": "Último",
+            "next": "Siguiente",
+            "previous": "Anterior"
+          }
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
