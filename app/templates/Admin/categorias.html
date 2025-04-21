@@ -1,163 +1,180 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Categorías - Administrador</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Categorías - Administrador</title>
 
-  <link rel="shortcut icon" href="../../static/IMG/DAZZART SIN LETRAS_prev_ui.png" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="../../static/CSSA/categorias.css" />
+    <link rel="shortcut icon" href="../../static/IMG/DAZZART SIN LETRAS_prev_ui.png" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="../../static/CSSA/categorias.css" />
 </head>
 <body>
 
-  <div class="container-fluid">
-    <div class="row">
+    <div class="container-fluid">
+        <div class="row">
 
-      <!-- Sidebar para pantallas grandes -->
-      <div class="sidebar d-none d-md-block">
-          <h5 class="text-white">Dazzart Components</h5>
-          <ul class="nav flex-column">
-            <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
-            <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="pedido.html">Pedidos</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="descuentop.html">Descuentos por producto</a></li>
-            <li class="nav-item"><a class="nav-link text-white" href="descuentocategoria.html">Descuento por Categoría</a></li>
-            <li class="nav-item">
-              <a class="nav-link text-white" data-bs-toggle="collapse" href="#configMenu">Configuración</a>
-              <ul class="collapse list-unstyled ps-3" id="configMenu">
-                <li><a class="nav-link text-white" href="contraseñaadmin.html">Contraseña Admin</a></li>
-                <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
-                <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>                
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </nav>
-
-      <!-- Botón menú móvil -->
-      <div class="d-md-none p-3">
-        <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">☰ Menú</button>
-      </div>
-
-      <!-- Offcanvas menú móvil -->
-      <div class="offcanvas offcanvas-start text-bg-dark" id="sidebarMenu" tabindex="-1">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title">Dazzart Components</h5>
-          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
-        </div>
-        <div class="offcanvas-body">
-          <ul class="nav flex-column">
-            <li><a class="nav-link text-white" href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
-            <li><a class="nav-link text-white" href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
-            <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
-            <li><a class="nav-link text-white" href="pedido.html">Pedidos</a></li>
-            <li><a class="nav-link text-white" href="descuentop.html">Descuentos por producto</a></li>
-            <li><a class="nav-link text-white" href="descuentocategoria.html">Descuento por Categoría</a></li>
-            <li>
-              <a class="nav-link text-white" data-bs-toggle="collapse" href="#configMenuMobile">Configuración</a>
-              <ul class="collapse list-unstyled ps-3" id="configMenuMobile">
-                <li><a class="nav-link text-white" href="contraseñaadmin.html">Contraseña Admin</a></li>
-                <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
-                <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>
-                
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Contenido principal -->
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-4">
-        <div class="mb-4">
-          <h2>Agregar nueva categoría</h2>
-          <form action="{{ url_for('categoria_bp.agregar_categoria') }}" method="POST" class="row g-3">
-            <div class="col-md-4">
-              <input type="text" name="nombre" class="form-control" placeholder="Nombre de la categoría" required>
+            <div class="sidebar d-none d-md-block">
+                <h5>Dazzart Components</h5>
+                <ul class="nav flex-column">
+                    <li><a href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
+                    <li><a href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
+                    <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
+                    <li><a href="">Pedidos</a></li>
+                    <li><a href="">Descuentos por producto</a></li>
+                    <li><a href="">Descuento por Categoría</a></li>
+                    <li>
+                        <a href="#" data-bs-toggle="collapse" data-bs-target="#configMenu">Configuración</a>
+                        <ul class="collapse" id="configMenu">
+                            <li><a href="contraseñaadmin.html">Contraseña Admin</a></li>
+                            <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
+                            <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
-            <div class="col-md-6">
-              <input type="text" name="descripcion" class="form-control" placeholder="Descripción" required>
-            </div>
-            <div class="col-md-2">
-              <button type="submit" class="btn btn-warning text-white me-2 w-75">Añadir</button>
-            </div>
-          </form>
-        </div>
 
-        <!-- Tabla -->
-        <div class="table-responsive">
-          <table id="tablaCategorias" class="table table-bordered table-hover">
-            <thead class="table-dark">
-              <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for cat in categorias %}
-              <tr>
-                <td>{{ cat.id_categoria }}</td>
-                <td>{{ cat.nombre_categoria }}</td>
-                <td>{{ cat.descripcion_categoria }}</td>
-                <td>
-                  <div class="d-flex flex-column gap-2">
-                    <form action="{{ url_for('categoria_bp.editar_categoria', id=cat.id_categoria) }}" method="POST">
-                      <input type="text" name="nombre" value="{{ cat.nombre_categoria }}" class="form-control form-control-sm mb-2" required>
-                      <input type="text" name="descripcion" value="{{ cat.descripcion_categoria }}" class="form-control form-control-sm mb-2" required>
-                      <button class="btn btn-success btn-sm w-100">Editar</button>
+            <div class="d-md-none p-3">
+                <button class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">☰ Menú</button>
+            </div>
+
+            <div class="offcanvas offcanvas-start text-bg-dark" id="sidebarMenu" tabindex="-1">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title">Dazzart Components</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="nav flex-column">
+                        <li><a class="nav-link text-white" href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
+                        <li><a class="nav-link text-white" href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
+                        <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
+                        <li><a class="nav-link text-white" href="pedido.html">Pedidos</a></li>
+                        <li><a class="nav-link text-white" href="descuentop.html">Descuentos por producto</a></li>
+                        <li><a class="nav-link text-white" href="descuentocategoria.html">Descuento por Categoría</a></li>
+                        <li>
+                            <a class="nav-link text-white" data-bs-toggle="collapse" href="#configMenuMobile">Configuración</a>
+                            <ul class="collapse list-unstyled ps-3" id="configMenuMobile">
+                                <li><a class="nav-link text-white" href="contraseñaadmin.html">Contraseña Admin</a></li>
+                                <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
+                                <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-4">
+                <div class="mb-4">
+                    <h2>Agregar nueva categoría</h2>
+                    <form id="agregarCategoriaForm" action="{{ url_for('categoria_bp.agregar_categoria') }}" method="POST" class="row g-3">
+                        <div class="col-md-4">
+                            <input type="text" name="nombre" class="form-control" placeholder="Nombre de la categoría" required disabled>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="text" name="descripcion" class="form-control" placeholder="Descripción" required disabled>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-warning text-white me-2 w-75" disabled>Añadir</button>
+                        </div>
                     </form>
-                    <form action="{{ url_for('categoria_bp.eliminar_categoria', id=cat.id_categoria) }}" method="POST">
-                      <button class="btn btn-danger btn-sm w-100" onclick="return confirm('¿Eliminar esta categoría?')">Eliminar</button>
-                    </form>
-                  </div>
-                </td>
-              </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="tablaCategorias" class="table table-bordered table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for cat in categorias %}
+                            <tr>
+                                <td>{{ cat.id_categoria }}</td>
+                                <td>{{ cat.nombre_categoria }}</td>
+                                <td>{{ cat.descripcion_categoria }}</td>
+                                <td>
+                                    <div class="d-flex flex-column gap-2">
+                                        <form action="{{ url_for('categoria_bp.editar_categoria', id=cat.id_categoria) }}" method="POST" class="edit-form-{{ cat.id_categoria }}" style="display:none;">
+                                            <input type="text" name="nombre" value="{{ cat.nombre_categoria }}" class="form-control form-control-sm mb-2" required>
+                                            <input type="text" name="descripcion" value="{{ cat.descripcion_categoria }}" class="form-control form-control-sm mb-2" required>
+                                            <div class="d-flex gap-2">
+                                                <button type="submit" class="btn btn-success btn-sm w-50">Guardar</button>
+                                                <button type="button" class="btn btn-secondary btn-sm w-50 cancel-edit" data-categoria-id="{{ cat.id_categoria }}">Cancelar</button>
+                                            </div>
+                                        </form>
+                                        <div class="action-buttons-{{ cat.id_categoria }}">
+                                            <button type="button" class="btn btn-success btn-sm w-100 edit-button mb-2" data-categoria-id="{{ cat.id_categoria }}">Editar</button>
+                                            <form action="{{ url_for('categoria_bp.eliminar_categoria', id=cat.id_categoria) }}" method="POST">
+                                                <button class="btn btn-danger btn-sm w-100" onclick="return confirm('¿Eliminar esta categoría?')">Eliminar</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </main>
         </div>
-      </main>
     </div>
-  </div>
 
-  <!-- Scripts -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <script>
-    $(document).ready(function () {
-      $('#tablaCategorias').DataTable({
-        "responsive": true,
-        "autoWidth": false,
-        "pageLength": 10,  // Valor por defecto
-        "lengthMenu": [ [1, 6, 8, 10, 20], [1, 6, 8, 10, 20] ],  // Opciones disponibles
-        "language": {
-          "lengthMenu": "Mostrar _MENU_ registros por página",
-          "zeroRecords": "No se encontraron resultados",
-          "info": "Mostrando página _PAGE_ de _PAGES_",
-          "infoEmpty": "No hay registros disponibles",
-          "infoFiltered": "(filtrado de _MAX_ registros en total)",
-          "search": "Buscar:",
-          "paginate": {
-            "first": "Primero",
-            "last": "Último",
-            "next": "Siguiente",
-            "previous": "Anterior"
-          }
-        }
-      });
-    });
+    <script>
+        $(document).ready(function () {
+            $('#tablaCategorias').DataTable({
+                "responsive": true,
+                "autoWidth": false,
+                "pageLength": 5,   // Valor por defecto
+                "lengthMenu": [ [1, 5, 6, 8, 10, 20], [1,5,  6, 8, 10, 20] ],   // Opciones disponibles
+                "language": {
+                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                    "zeroRecords": "No se encontraron resultados",
+                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                    "infoEmpty": "No hay registros disponibles",
+                    "infoFiltered": "(filtrado de _MAX_ registros en total)",
+                    "search": "Buscar:",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Último",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                }
+            });
+
+            const agregarForm = $('#agregarCategoriaForm');
+            agregarForm.find('input[type="text"]').prop('disabled', true);
+            agregarForm.find('button[type="submit"]').prop('disabled', true);
+
+            // Habilitar los campos al hacer clic en el botón
+            $('h2:contains("Agregar nueva categoría")').next('form').find('input[type="text"]').prop('disabled', false);
+            $('h2:contains("Agregar nueva categoría")').next('form').find('button[type="submit"]').prop('disabled', false);
+
+
+            $('.edit-button').click(function() {
+                var categoriaId = $(this).data('categoria-id');
+                $('.edit-form-' + categoriaId).show();
+                $('.action-buttons-' + categoriaId).hide();
+            });
+
+            $('.cancel-edit').click(function() {
+                var categoriaId = $(this).data('categoria-id');
+                $('.edit-form-' + categoriaId).hide();
+                $('.action-buttons-' + categoriaId).show();
+            });
+        });
     </script>
 
 </body>
 </html>
-
-
