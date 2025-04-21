@@ -23,7 +23,7 @@ def mostrar_compras():
         return render_template('Index/compras.html', carrito=[], total=0)
 
 @compras_bp.route('/detallesfactura', methods=['GET'])
-def detalles_factura():  # Esta es la que se queda
+def detalles_factura():
     connection = current_app.connection
     try:
         with connection.cursor() as cursor:
@@ -47,9 +47,9 @@ def detalles_factura():  # Esta es la que se queda
                     OR 
                     (d.tipo_descuento = 'Categoria' AND d.id_categoria = c.id_categoria)
                 )
-                WHERE d.estado_descuento = 'Activo'
-                AND %s BETWEEN d.fecha_inicio AND d.fecha_fin
-                OR d.id_descuento IS NULL
+                WHERE 
+                    (d.estado_descuento = 'Activo' AND %s BETWEEN d.fecha_inicio AND d.fecha_fin)
+                    OR d.id_descuento IS NULL;
             """
             cursor.execute(query, (hoy,))
             productos = cursor.fetchall()
@@ -73,10 +73,19 @@ def detalles_factura():  # Esta es la que se queda
                 'cantidad': 1
             })
 
+        subtotal = sum(p['precio_original'] * p['cantidad'] for p in carrito)
         total = sum(p['precio_final'] * p['cantidad'] for p in carrito)
+        descuento_total = subtotal - total
+        porcentaje_descuento = round((descuento_total / subtotal) * 100) if subtotal else 0
 
-        return render_template('Index/Detallesfactura.html', carrito=carrito, total=total)
+        return render_template(
+            'Index/Detallesfactura.html',
+            carrito=carrito,
+            subtotal=subtotal,
+            descuento=porcentaje_descuento,
+            total=total
+        )
 
     except Exception as e:
         print("Error al aplicar descuento:", e)
-        return render_template('Index/Detallesfactura.html', carrito=[], total=0)
+        return render_template('Index/Detallesfactura.html', carrito=[], subtotal=0, descuento=0, total=0)
