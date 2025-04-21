@@ -122,9 +122,13 @@
                                         </div>
                                     </form>
                                     <div class="action-buttons-{{ sub.id_subcategoria }}">
-                                        <button type="button" class="btn btn-success btn-sm w-100 edit-button mb-2" data-subcategoria-id="{{ sub.id_subcategoria }}">Editar</button>
+                                        <button type="button" class="btn btn-success btn-sm w-100 edit-button mb-2" data-subcategoria-id="{{ sub.id_subcategoria }}">
+                                            <img src="{{ url_for('static', filename='IMG/edit.png') }}" alt="Editar" style="width:16px; height:16px; margin-right:5px;">
+                                          </button>
                                         <form action="{{ url_for('subcategoria_bp.eliminar_subcategoria', id=sub.id_subcategoria) }}" method="POST">
-                                            <button class="btn btn-danger btn-sm w-100" onclick="return confirm('¿Eliminar esta subcategoría?')">Eliminar</button>
+                                            <button class="btn btn-danger btn-sm w-100" onclick="return confirm('¿Eliminar esta subcategoría?')">
+                                                <img src="{{ url_for('static', filename='IMG/delete.png') }}" alt="Eliminar" style="width:16px; height:16px; margin-right:5px;">
+                                              </button>
                                         </form>
                                     </div>
                                 </div>
