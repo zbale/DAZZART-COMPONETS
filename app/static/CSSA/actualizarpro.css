@@ -1,44 +1,78 @@
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-  }
+  font-family: 'Plus Jakarta Sans', sans-serif;
+}
 
-  /* Sidebar fijo */
+/* Sidebar fijo */
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background: #212529; 
+  color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 20px;
+}
+
+.sidebar a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+}
+
+.sidebar a:hover {
+  background: #343a40;
+  border-radius: 5px;
+}
+
+/* Ajuste del contenido principal */
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+}
+
+/* Ocultar sidebar en móviles y usar Offcanvas */
+@media (max-width: 768px) {
   .sidebar {
-    width: 250px;
-    height: 100vh;
-    background: #212529;
-    color: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: 20px;
+    display: none;
   }
-
-  .sidebar a {
-    color: white;
-    text-decoration: none;
-    display: block;
-    padding: 10px;
-  }
-
-  .sidebar a:hover {
-    background: #343a40;
-    border-radius: 5px;
-  }
-
-  /* Ajuste del contenido principal */
   .main-content {
-    margin-left: 250px;
-    padding: 20px;
+    margin-left: 0;
   }
-  
+}
 
-  /* Ocultar sidebar en móviles y usar Offcanvas */
-  @media (max-width: 768px) {
-    .sidebar {
-      display: none;
-    }
-    .main-content {
-      margin-left: 0;
-    }
-  }
+/* Estilo para la tabla */
+.table {
+  width: 100%;
+  border-collapse: separate; /* Asegúrate de que los bordes no colapsen */
+  border-spacing: 1px 1px; /* Espaciado entre columnas (horizontal y vertical) */
+  margin-top: 20px;
+}
+
+.table th, .table td {
+  text-align: center; /* Centra el contenido */
+  padding: 15px; /* Espaciado interno */
+  border: 1px solid #ddd; /* Bordes de las celdas */
+}
+
+.table th {
+  background-color: #343a40; /* Color de fondo para el encabezado */
+  color: white; /* Color del texto */
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f9f9f9; /* Color para filas impares */
+}
+
+.table-striped tbody tr:nth-of-type(even) {
+  background-color: #e9ecef; /* Color para filas pares */
+}
+
+.table-hover tbody tr:hover {
+  background-color: #d6d8db; /* Fondo gris claro al pasar el mouse */
+}
+
+.table .btn {
+  margin: 0 5px; /* Espaciado entre botones */
+}
