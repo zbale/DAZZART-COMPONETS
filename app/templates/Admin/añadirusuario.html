@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categorías - Administrador</title>
+
+  <!-- Ícono de la página -->
+  <link rel="shortcut icon" href="../IMG/DAZZART SIN LETRAS_prev_ui.png">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSSA/añadirusuario.css') }}">
+
+
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar d-none d-md-block">
+    <h5>Dazzart components</h5>
+    <ul class="nav flex-column">
+      <li><a href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
+      <li><a href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
+      <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
+      <li><a href="pedido.html">Pedidos</a></li>
+      <li><a href="descuentop.html">Descuentos por producto</a></li>
+      <li><a href="descuentocategoria.html">Descuento por Categoría</a></li>
+      <li>
+        <a href="#" data-bs-toggle="collapse" data-bs-target="#configMenu">Configuración</a>
+        <ul class="collapse" id="configMenu">
+          <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
+          <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>
+          
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Botón para abrir el sidebar en móviles -->
+  <button class="btn btn-dark d-md-none m-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
+    ☰ Menú
+  </button>
+
+  <!-- Sidebar en móviles (Offcanvas) -->
+  <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="sidebarMenu">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Dazzart Components</h5>
+      <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="nav flex-column">
+        <li><a class="nav-link text-white" href="categorias.html">Categorías</a></li>
+        <li><a class="nav-link text-white" href="subcategorias.html">Subcategorías</a></li>
+        <li><a class="nav-link text-white" href="Productos.html">Productos</a></li>
+        <li><a class="nav-link text-white" href="pedido.html">Pedidos</a></li>
+        <li><a class="nav-link text-white" href="descuentop.html">Descuentos por producto</a></li>
+        <li><a class="nav-link text-white" href="descuentocategoria.html">Descuento por Categoría</a></li>
+        <li>
+          <a class="nav-link text-white" data-bs-toggle="collapse" href="#configMenuMobile">Configuración</a>
+          <ul class="collapse" id="configMenuMobile">
+            <li><a class="nav-link text-white" href="contraseñaadmin.html">Contraseña Admin</a></li>
+            <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
+            <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>
+            
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="main-content">
+    <h1>añadir Administrador</h1>
+
+    <!-- Tabla con DataTables -->
+
+  </div>
+
+  <div class="d-flex justify-content-center align-items-center vh-80">
+    <form method="POST" action="{{ url_for('user_bp.agregar_usuario') }}" class="p-4 bg-light rounded shadow-sm w-50">
+      <div class="mb-3">
+        <label for="valor descuento" class="form-label">cedula</label>
+        <input type="text" class="form-control" id="categoriaNombre" placeholder="" name="cedula" required >
+      </div>
+      
+      <div class="mb-3">
+        <label for="valor descuento" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="categoriaNombre" placeholder="" name="nombre"  required>
+      </div>
+      <div class="mb-3">
+        <label for="valor descuento" class="form-label">Nombre de usuario</label>
+        <input type="text" class="form-control" id="categoriaNombre" placeholder=""name="nombre_usuario" required >
+      </div>
+      <div class="mb-3">
+        <label for="valor descuento" class="form-label">Correo electronico</label>
+        <input type="text" class="form-control" id="categoriaNombre" placeholder="" name="correo" required>
+      </div>
+      <div class="mb-3">
+        <label for="valor descuento" class="form-label">Celular</label>
+        <input type="text" class="form-control" id="categoriaNombre" placeholder="" name="telefono" required >
+      </div>
+      <div class="mb-3">
+        <label for="valor descuento" class="form-label">Direccion</label>
+        <input type="text" class="form-control" id="categoriaNombre" placeholder="" name="direccion" required >
+      </div>
+      <div class="mb-3">
+        <label for="valor descuento" class="form-label">contraseña</label>
+        <input type="text" class="form-control" id="categoriaNombre" placeholder="" name="contrasena" required >
+      </div>
+      
+      <div class="mb-3">
+        <label for="rol" class="form-label">Rol</label>
+        <input type="text" class="form-control" id="rol" name="rol" value="admin" readonly>
+      </div>
+      <div class="text-center mt-4">
+        <button type="submit" class="btn btn-dark">Añadir</button>
+      </div>
+      
+    </form>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

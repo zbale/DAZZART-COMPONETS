@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Subcategorías - Administrador</title>
+
+    <link rel="shortcut icon" href="../../static/IMG/DAZZART SIN LETRAS_prev_ui.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="../../static/CSSA/subcategorias.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid">
+
+        <div class="sidebar d-none d-md-block">
+            <h5>Dazzart Components</h5>
+            <ul class="nav flex-column">
+                <li><a href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
+                <li><a href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
+                <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
+                <li><a href="">Pedidos</a></li>
+                <li><a href="">Descuentos por producto</a></li>
+                <li><a href="">Descuento por Categoría</a></li>
+                <li>
+                    <a href="#" data-bs-toggle="collapse" data-bs-target="#configMenu">Configuración</a>
+                    <ul class="collapse" id="configMenu">
+                        <li><a href="contraseñaadmin.html">Contraseña Admin</a></li>
+                        <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
+                        <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <button class="btn btn-dark d-md-none m-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
+            ☰ Menú
+        </button>
+        <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="sidebarMenu">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title">Dazzart Components</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="nav flex-column">
+                    <li><a class="nav-link text-white" href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
+                    <li><a class="nav-link text-white active" href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
+                    <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
+                    <li><a class="nav-link text-white" href="pedido.html">Pedidos</a></li>
+                    <li><a class="nav-link text-white" href="descuentop.html">Descuentos por producto</a></li>
+                    <li><a class="nav-link text-white" href="descuentocategoria.html">Descuento por Categoría</a></li>
+                    <li>
+                        <a class="nav-link text-white" data-bs-toggle="collapse" href="#configMenuMobile">Configuración</a>
+                        <ul class="collapse" id="configMenuMobile">
+                            <li><a class="nav-link text-white" href="contraseñaadmin.html">Contraseña Admin</a></li>
+                            <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
+                            <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 mt-4">
+            <div class="mb-4">
+                <h2>Agregar nueva subcategoría</h2>
+                <form action="{{ url_for('subcategoria_bp.agregar_subcategoria') }}" method="POST" class="row g-3">
+                    <div class="col-md-4">
+                        <select name="id_categoria" class="form-select" required>
+                            <option value="">Selecciona una categoría</option>
+                            {% for categoria in categorias %}
+                            <option value="{{ categoria.id_categoria }}">{{ categoria.nombre_categoria }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" name="nombre" class="form-control" placeholder="Nombre de la subcategoría" required>
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" name="descripcion" class="form-control" placeholder="Descripción" required>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-warning text-white me-2 w-75">Añadir</button>
+                    </div>
+                </form>
+            </div>
+
+            {% for nombre_categoria, subcategorias in subcategorias_por_categoria.items() %}
+            <h4 class="mt-4">{{ nombre_categoria }}</h4>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover datatable">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Descripción</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for sub in subcategorias %}
+                        <tr>
+                            <td>{{ sub.id_subcategoria }}</td>
+                            <td>{{ sub.nombre_subcategoria }}</td>
+                            <td>{{ sub.descripcion_subcategoria }}</td>
+                            <td>
+                                <div class="d-flex flex-column gap-2">
+                                    <form action="{{ url_for('subcategoria_bp.editar_subcategoria', id=sub.id_subcategoria) }}" method="POST" class="edit-form-{{ sub.id_subcategoria }}" style="display:none;">
+                                        <input type="text" name="nombre" value="{{ sub.nombre_subcategoria }}" class="form-control form-control-sm mb-2" required>
+                                        <input type="text" name="descripcion" value="{{ sub.descripcion_subcategoria }}" class="form-control form-control-sm mb-2" required>
+                                        <select name="id_categoria" class="form-control form-control-sm mb-2">
+                                            {% for categoria in categorias %}
+                                            <option value="{{ categoria.id_categoria }}" {% if categoria.id_categoria == sub.id_categoria %}selected{% endif %}>
+                                                {{ categoria.nombre_categoria }}
+                                            </option>
+                                            {% endfor %}
+                                        </select>
+                                        <div class="d-flex gap-2">
+                                            <button type="submit" class="btn btn-success btn-sm w-50">Guardar</button>
+                                            <button type="button" class="btn btn-secondary btn-sm w-50 cancel-edit" data-subcategoria-id="{{ sub.id_subcategoria }}">Cancelar</button>
+                                        </div>
+                                    </form>
+                                    <div class="action-buttons-{{ sub.id_subcategoria }}">
+                                        <button type="button" class="btn btn-success btn-sm w-100 edit-button mb-2" data-subcategoria-id="{{ sub.id_subcategoria }}">
+                                            <img src="{{ url_for('static', filename='IMG/edit.png') }}" alt="Editar" style="width:16px; height:16px; margin-right:5px;">
+                                          </button>
+                                        <form action="{{ url_for('subcategoria_bp.eliminar_subcategoria', id=sub.id_subcategoria) }}" method="POST">
+                                            <button class="btn btn-danger btn-sm w-100" onclick="return confirm('¿Eliminar esta subcategoría?')">
+                                                <img src="{{ url_for('static', filename='IMG/delete.png') }}" alt="Eliminar" style="width:16px; height:16px; margin-right:5px;">
+                                              </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            {% endfor %}
+        </main>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $('.datatable').DataTable({
+                    responsive: true,
+                    autoWidth: false,
+                    pageLength: 2,
+                    lengthMenu: [[1, 2, 6, 8, 10, 20], [1, 2, 6, 8, 10, 20]],
+                    language: {
+                        lengthMenu: "Mostrar _MENU_ registros por página",
+                        zeroRecords: "No se encontraron resultados",
+                        info: "Mostrando página _PAGE_ de _PAGES_",
+                        infoEmpty: "No hay registros disponibles",
+                        infoFiltered: "(filtrado de _MAX_ registros en total)",
+                        search: "Buscar:",
+                        paginate: {
+                            first: "Primero",
+                            last: "Último",
+                            next: "Siguiente",
+                            previous: "Anterior"
+                        }
+                    }
+                });
+
+                $('.edit-button').click(function() {
+                    var subcategoriaId = $(this).data('subcategoria-id');
+                    $('.edit-form-' + subcategoriaId).show();
+                    $('.action-buttons-' + subcategoriaId).hide();
+                });
+
+                $('.cancel-edit').click(function() {
+                    var subcategoriaId = $(this).data('subcategoria-id');
+                    $('.edit-form-' + subcategoriaId).hide();
+                    $('.action-buttons-' + subcategoriaId).show();
+                });
+            });
+        </script>
+
+</body>
+</html>
