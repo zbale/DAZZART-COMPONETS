@@ -22,7 +22,7 @@
 </head>
 <body>
 
-  <!-- Sidebar (puedes personalizar o eliminar según tu plantilla) -->
+  <!-- Sidebar -->
   <div class="sidebar d-none d-md-block">
     <h5>Dazzart Components</h5>
     <ul class="nav flex-column">
@@ -34,7 +34,7 @@
       <li>
         <a href="#" data-bs-toggle="collapse" data-bs-target="#configMenu">Configuración</a>
         <ul class="collapse" id="configMenu">
-          <li><a href="contraseñaadmin.html">Contraseña Admin</a></li>
+  
           <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
           <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>          
         </ul>
