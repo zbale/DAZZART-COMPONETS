@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Descuentos - Administrador</title>
+
+  <link rel="shortcut icon" href="../IMG/DAZZART SIN LETRAS_prev_ui.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="../../static/CSSA/descuento.css">
+</head>
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar d-none d-md-block">
+  <h5>Dazzart Components</h5>
+  <ul class="nav flex-column">
+    <li><a href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
+    <li><a href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
+    <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
+    <li><a href="{{ url_for('descuento_bp.descuentos') }}">Descuentos</a></li>
+    <li><a href="{{ url_for('admin_bp.pedidos') }}">Pedidos</a></li>
+
+    <li>
+      <a href="#" data-bs-toggle="collapse" data-bs-target="#configMenu">Configuración</a>
+      <ul class="collapse" id="configMenu">
+        <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
+        <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>
+      </ul>
+    </li>
+  </ul>
+</div>
+
+<!-- Contenido principal -->
+<div class="main-content px-4">
+  <div class="d-flex justify-content-between align-items-center my-4">
+    <h1>Gestión de Descuentos</h1>
+    <a href="{{ url_for('descuento_bp.formulario_descuento') }}" class="btn btn-dark">Añadir Descuento</a>
+  </div>
+
+  <!-- Tabla -->
+  <div class="table-responsive">
+    <table id="tablaDescuentos" class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Tipo</th>
+          <th>Valor</th>
+          <th>Fecha Inicio</th>
+          <th>Fecha Fin</th>
+          <th>Estado</th>
+          <th>Aplicación</th>
+          <th>Producto/Categoría</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for d in descuentos %}
+        <tr>
+          <td>{{ d.id_descuento }}</td>
+          <td>{{ d.tipo_descuento }}</td>
+          <td>{{ d.valor }}</td>
+          <td>{{ d.fecha_inicio }}</td>
+          <td>{{ d.fecha_fin }}</td>
+          <td>{{ d.estado_descuento }}</td>
+          <td>{{ d.aplicacion }}</td>
+          <td>
+            {% if d.aplicacion == 'producto' %}
+              {{ d.nombre_producto }}
+            {% elif d.aplicacion == 'categoria' %}
+              {{ d.nombre_categoria }}
+            {% else %}
+              Todos
+            {% endif %}
+          </td>
+          <td>
+            <a href="/descuentos/editar/{{ d.id_descuento }}" class="btn btn-success btn-sm">Editar</a>
+          
+            <form action="/descuentos/eliminar/{{ d.id_descuento }}" method="POST" style="display:inline;">
+              <button type="submit" class="btn btn-danger btn-sm"
+                      onclick="return confirm('¿Estás seguro que deseas eliminar este descuento? Esta acción no se puede deshacer.');">
+                Eliminar
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+  // DataTables
+  new DataTable('#tablaDescuentos', {
+    language: {
+      url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json'
+    }
+  });
+
+  // Eliminar con confirmación
+  document.querySelectorAll('.delete-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.id;
+      Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Esta acción no se puede deshacer',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#aaa',
+        confirmButtonText: 'Sí, eliminar'
+      }).then(result => {
+        if (result.isConfirmed) {
+          window.location.href = `/descuentos/eliminar/${id}`;
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

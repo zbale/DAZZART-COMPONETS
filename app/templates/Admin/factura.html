@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalles Factura - Administrador #{{ factura.id_factura }}</title>
+  <link rel="shortcut icon" href="../../static/IMG/DAZZART SIN LETRAS_prev_ui.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='CSSA/gestionusuarios.css') }}">
+</head>
+<body>
+
+  <div class="container-fluid mt-4">
+    <div class="row">
+
+  <!-- Sidebar (puedes personalizar o eliminar según tu plantilla) -->
+  <div class="sidebar d-none d-md-block">
+    <h5>Dazzart Components</h5>
+    <ul class="nav flex-column">
+      <li><a href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
+      <li><a href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
+      <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
+      <li><a href="{{ url_for('descuento_bp.descuentos') }}">Descuentos</a></li>
+      <li><a href="{{ url_for('admin_bp.pedidos') }}">Pedidos</a></li>
+      <li>
+        <a href="#" data-bs-toggle="collapse" data-bs-target="#configMenu">Configuración</a>
+        <ul class="collapse" id="configMenu">
+          <li><a href="contraseñaadmin.html">Contraseña Admin</a></li>
+          <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
+          <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>          
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+      <!-- Contenido principal -->
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <!-- Botón menú móvil -->
+        <button class="btn btn-dark d-md-none mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu">
+          ☰ Menú
+        </button>
+
+        <!-- Sidebar móvil (Offcanvas) -->
+        <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="sidebarMenu">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Dazzart Components</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="nav flex-column">
+              <li><a href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
+              <li><a href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
+              <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
+              <li><a href="{{ url_for('admin_bp.pedidos') }}">Pedidos</a></li>
+              <li><a href="{{ url_for('descuento_bp.descuentos') }}">Descuentos</a></li>
+              <li>
+                <a class="nav-link text-white" data-bs-toggle="collapse" href="#configMenuMobile">Configuración</a>
+                <ul class="collapse" id="configMenuMobile">
+                  <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
+                  <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Detalles de la factura -->
+        <div class="card">
+          <div class="card-header">
+            <h2>Detalles Factura #{{ factura.id_factura }}</h2>
+          </div>
+          <div class="card-body">
+            <p><strong>Cliente:</strong> {{ factura.nombre_cliente }}</p>
+            <p><strong>Dirección:</strong> {{ factura.direccion }}</p>
+            <p><strong>Productos:</strong> {{ factura.productos }}</p>
+            <p><strong>Total de productos:</strong> {{ factura.total_productos }}</p>
+            <p><strong>Total a pagar:</strong> ${{ "{:,.2f}".format(factura.total) }}</p>
+            <p><strong>Estado:</strong> {{ factura.estado }}</p>
+          </div>
+          <div class="card-footer">
+            <a href="{{ url_for('admin_bp.pedidos') }}" class="btn btn-secondary">Volver a pedidos</a>
+          </div>
+        </div>
+      </main>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+</body>
+</html>

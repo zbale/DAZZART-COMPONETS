@@ -22,9 +22,8 @@
                     <li><a href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
                     <li><a href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
                     <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
-                    <li><a href="">Pedidos</a></li>
-                    <li><a href="">Descuentos por producto</a></li>
-                    <li><a href="">Descuento por Categoría</a></li>
+                    <li><a href="{{ url_for('descuento_bp.descuentos') }}">Descuentos</a></li>
+                    <li><a href="{{ url_for('admin_bp.pedidos') }}">Pedidos</a></li>
                     <li>
                         <a href="#" data-bs-toggle="collapse" data-bs-target="#configMenu">Configuración</a>
                         <ul class="collapse" id="configMenu">

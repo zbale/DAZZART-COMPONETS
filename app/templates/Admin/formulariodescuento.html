@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Descuentos - Administrador</title>
+
+  <!-- Ícono -->
+  <link rel="shortcut icon" href="../IMG/DAZZART SIN LETRAS_prev_ui.png">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- Estilos personalizados -->
+  <link rel="stylesheet" href="../../static/CSSA/formulariodescuento.css">
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar d-none d-md-block">
+    <h5>Dazzart Components</h5>
+    <ul class="nav flex-column">
+      <li><a href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
+      <li><a href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
+      <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
+      <li><a href="{{ url_for('descuento_bp.descuentos') }}">Descuentos</a></li>
+      <li><a href="{{ url_for('admin_bp.pedidos') }}">Pedidos</a></li>
+    
+      <li>
+        <a href="#" data-bs-toggle="collapse" data-bs-target="#configMenu">Configuración</a>
+        <ul class="collapse" id="configMenu">
+          <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
+          <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="main-content">
+
+    <h1 class="mb-4">Añadir Descuento</h1>
+  
+    <div class="d-flex justify-content-center align-items-center vh-100">
+      <form class="p-4 bg-light rounded shadow-sm w-50" action="{{ url_for('descuento_bp.formulario_descuento') }}" method="POST">
+        <h4 class="text-center mb-4">Añadir Descuento</h4>
+      
+        <!-- Campos comunes -->
+        <div class="mb-3">
+          <label for="tipo_descuento" class="form-label">Tipo de descuento</label>
+          <select class="form-select" name="tipo_descuento" id="tipo_descuento" required>
+            <option value="" disabled selected>Seleccione...</option>
+            <option value="Porcentaje">Porcentaje</option>
+            <option value="Fijo">Fijo</option>
+          </select>
+        </div>
+      
+        <div class="mb-3">
+          <label for="valor" class="form-label">Valor del descuento</label>
+          <input type="number" step="0.01" class="form-control" name="valor" id="valor" required>
+        </div>
+      
+        <div class="mb-3">
+          <label for="fecha_inicio" class="form-label">Fecha de inicio</label>
+          <input type="date" class="form-control" name="fecha_inicio" id="fecha_inicio" required>
+        </div>
+      
+        <div class="mb-3">
+          <label for="fecha_fin" class="form-label">Fecha de fin</label>
+          <input type="date" class="form-control" name="fecha_fin" id="fecha_fin" required>
+        </div>
+      
+        <div class="mb-3">
+          <label for="estado_descuento" class="form-label">Estado del descuento</label>
+          <select class="form-select" name="estado_descuento" id="estado_descuento" required>
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+          </select>
+        </div>
+      
+        <!-- Aplicación -->
+        <div class="mb-3">
+          <label class="form-label">Aplicar a:</label><br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="aplicacion" id="producto" value="producto" checked>
+            <label class="form-check-label" for="producto">Producto específico</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="aplicacion" id="categoria" value="categoria">
+            <label class="form-check-label" for="categoria">Categoría específica</label>
+          </div>
+        </div>
+      
+        <!-- Búsqueda de producto -->
+        <div class="mb-3" id="select-producto">
+          <label for="nombre_producto" class="form-label">Buscar producto:</label>
+          <input class="form-control" list="lista-productos" name="nombre_producto" id="nombre_producto" placeholder="Escriba para buscar..." required>
+          <datalist id="lista-productos">
+            {% for producto in productos %}
+              <option value="{{ producto.nombre }}">
+            {% endfor %}
+          </datalist>
+        </div>
+      
+        <div class="mb-3 d-none" id="select-categoria">
+          <label for="id_categoria" class="form-label">Selecciona una categoría:</label>
+          <select class="form-select" name="id_categoria" id="id_categoria">
+            {% for categoria in categorias %}
+              <option value="{{ categoria.id_categoria }}">{{ categoria.nombre_categoria }}</option>
+            {% endfor %}
+          </select>
+        </div>
+      
+        <div class="text-center mt-4">
+          <button type="submit" class="btn btn-dark">Guardar Descuento</button>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+  
+  <script>
+    const radios = document.querySelectorAll('input[name="aplicacion"]');
+    const divProducto = document.getElementById('select-producto');
+    const divCategoria = document.getElementById('select-categoria');
+    const inputProducto = document.getElementById('nombre_producto');
+    const selectCategoria = document.getElementById('id_categoria');
+  
+    function toggleInputs() {
+      if (document.getElementById('producto').checked) {
+        divProducto.classList.remove('d-none');
+        divCategoria.classList.add('d-none');
+        inputProducto.required = true;
+        selectCategoria.required = false;
+      } else {
+        divProducto.classList.add('d-none');
+        divCategoria.classList.remove('d-none');
+        inputProducto.required = false;
+        selectCategoria.required = true;
+      }
+    }
+  
+    // Al cargar la página
+    toggleInputs();
+  
+    // Al cambiar la opción
+    radios.forEach((radio) => {
+      radio.addEventListener('change', toggleInputs);
+    });
+  </script>
+
+
+</body>
+</html>

@@ -13,7 +13,6 @@ def create_app():
         user=app.config['MYSQL_USER'],
         password=app.config['MYSQL_PASSWORD'],
         database=app.config['MYSQL_DB'],
-        port=app.config['MYSQL_PORT'],
         cursorclass=pymysql.cursors.DictCursor
     )
     
@@ -23,14 +22,16 @@ def create_app():
     from app.controllers.categorias_controller import categoria_bp
     from app.controllers.subcategorias_controller import subcategoria_bp
     from app.controllers.productos_controller import producto_bp
-
-
+    from app.controllers.descuento_controller import descuento_bp
+    from app.controllers.pedidos_admin_controller_ import admin_bp as pedidos_bp
 
     app.register_blueprint(main_bp)
     app.register_blueprint(user_bp)
     app.register_blueprint(categoria_bp)
     app.register_blueprint(subcategoria_bp)
     app.register_blueprint(producto_bp)
+    app.register_blueprint(descuento_bp)
+    app.register_blueprint(pedidos_bp, url_prefix='/admin') 
 
 
 

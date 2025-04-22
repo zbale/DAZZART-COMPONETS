@@ -25,13 +25,11 @@
       <li><a href="{{ url_for('categoria_bp.listar_categorias') }}">Categorías</a></li>
       <li><a href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
       <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
-      <li><a href="pedido.html">Pedidos</a></li>
-      <li><a href="descuentop.html">Descuentos por producto</a></li>
-      <li><a href="descuentocategoria.html">Descuento por Categoría</a></li>
+      <li><a href="{{ url_for('descuento_bp.descuentos') }}">Descuentos</a></li>
+      <li><a href="{{ url_for('admin_bp.pedidos') }}">Pedidos</a></li>
       <li>
         <a href="#" data-bs-toggle="collapse" data-bs-target="#configMenu">Configuración</a>
         <ul class="collapse" id="configMenu">
-          <li><a href="contraseñaadmin.html">Contraseña Admin</a></li>
           <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
           <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>
           
@@ -57,12 +55,10 @@
       <li><a href="{{ url_for('subcategoria_bp.listar_subcategorias') }}">Subcategorías</a></li>
       <li><a href="{{ url_for('producto_bp.listar_productos') }}">Productos</a></li>
         <li><a class="nav-link text-white" href="pedido.html">Pedidos</a></li>
-        <li><a class="nav-link text-white" href="descuentop.html">Descuentos por producto</a></li>
-        <li><a class="nav-link text-white" href="descuentocategoria.html">Descuento por Categoría</a></li>
+        <li><a href="{{ url_for('descuento_bp.descuentos') }}">Descuentos</a></li>
         <li>
           <a class="nav-link text-white" data-bs-toggle="collapse" href="#configMenuMobile">Configuración</a>
           <ul class="collapse" id="configMenuMobile">
-            <li><a class="nav-link text-white" href="contraseñaadmin.html">Contraseña Admin</a></li>
             <li><a class="nav-link text-white" href="{{ url_for('user_bp.listar_usuarios') }}">Clientes</a></li>
             <li><a class="nav-link text-white" href="{{ url_for('user_bp.login') }}">Salir</a></li>
             
