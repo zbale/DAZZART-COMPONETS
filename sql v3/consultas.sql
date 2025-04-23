@@ -24,11 +24,13 @@ select * from factura where estado = 'pagada';
 SELECT * FROM factura WHERE fecha_factura = '2025-03-07';
 -- buscar los productos con un precio mayor o igual a un precio--
 SELECT nombre AS producto , precio from producto where precio >= 89.99;
--- actualizar un descuneto aplicado --
+
+-- Actualizar un descuento 
 UPDATE descuento
-SET tipo_descuento = 'Producto',
+SET tipo_descuento = 'Fijo',            -- o 'Porcentaje'
     valor = 15.00,
     fecha_inicio = '2025-05-01',
     fecha_fin = '2025-05-31',
-    estado_descuento = 'Activo'
+    estado_descuento = 'Activo',
+    aplicacion = 'producto'             -- si aplica a productos
 WHERE id_descuento = 1;
