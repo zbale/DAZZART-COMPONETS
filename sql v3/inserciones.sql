@@ -57,18 +57,20 @@ INSERT INTO subcategoria (nombre_subcategoria, descripcion_subcategoria, id_cate
 ('Routers WiFi', 'Dispositivos de conexión inalámbrica', 7);
 SELECT * FROM subcategoria;
 
-INSERT INTO producto (numero_serial, imagen, nombre, descripcion, precio, stock, id_categoria, fecha_creacion) VALUES
-('NS-001', 'IMG/default.png', 'Laptop HP Envy', 'Ultrabook con pantalla táctil', 1199.99, 15, 1, '2025-03-05'),
-('NS-002', 'IMG/default.png', 'PC Gamer Alienware', 'Computadora con RTX 4080', 2999.99, 8, 1, '2025-03-06'),
-('NS-003', 'IMG/default.png', 'Teclado Mecánico Razer', 'Teclado RGB con switches ópticos', 149.99, 25, 2, '2025-03-07'),
-('NS-004', 'IMG/default.png', 'Mouse Logitech G502', 'Ratón gaming de alta precisión', 89.99, 40, 2, '2025-03-08'),
-('NS-005', 'IMG/default.png', 'Memoria RAM Kingston 32GB', 'DDR5 para alto rendimiento', 199.99, 30, 3, '2025-03-09'),
-('NS-006', 'IMG/default.png', 'Procesador AMD Ryzen 9', 'CPU de alto rendimiento', 499.99, 10, 3, '2025-03-10'),
-('NS-007', 'IMG/default.png', 'Silla Gamer Corsair', 'Silla ergonómica con ajuste lumbar', 249.99, 20, 4, '2025-03-11'),
-('NS-008', 'IMG/default.png', 'Cable HDMI 2.1', 'Cable de ultra alta velocidad', 29.99, 50, 5, '2025-03-12'),
-('NS-009', 'IMG/default.png', 'Antivirus Norton', 'Protección completa para PC', 79.99, 35, 6, '2025-03-13'),
-('NS-010', 'IMG/default.png', 'Router TP-Link AX6000', 'WiFi 6 para conexiones rápidas', 179.99, 15, 7, '2025-03-14'),
-('NS-011', 'IMG/default.png', 'Router aorus', 'WiFi 6 para conexiones rápidas', 179.99, 15, 7, '2025-03-14');
+INSERT INTO producto (numero_serial, imagen, nombre, descripcion, precio, stock, id_categoria, id_subcategoria, fecha_creacion) 
+VALUES
+('NS-001', 'IMG/default.png', 'Laptop HP Envy', 'Ultrabook con pantalla táctil', 1199.99, 15, 1, 1, '2025-03-05'),
+('NS-002', 'IMG/default.png', 'PC Gamer Alienware', 'Computadora con RTX 4080', 2999.99, 8, 1, 2, '2025-03-06'),
+('NS-003', 'IMG/default.png', 'Teclado Mecánico Razer', 'Teclado RGB con switches ópticos', 149.99, 25, 2, 3, '2025-03-07'),
+('NS-004', 'IMG/default.png', 'Mouse Logitech G502', 'Ratón gaming de alta precisión', 89.99, 40, 2, 4, '2025-03-08'),
+('NS-005', 'IMG/default.png', 'Memoria RAM Kingston 32GB', 'DDR5 para alto rendimiento', 199.99, 30, 3, 5, '2025-03-09'),
+('NS-006', 'IMG/default.png', 'Procesador AMD Ryzen 9', 'CPU de alto rendimiento', 499.99, 10, 3, 6, '2025-03-10'),
+('NS-007', 'IMG/default.png', 'Silla Gamer Corsair', 'Silla ergonómica con ajuste lumbar', 249.99, 20, 4, 7, '2025-03-11'),
+('NS-008', 'IMG/default.png', 'Cable HDMI 2.1', 'Cable de ultra alta velocidad', 29.99, 50, 5, 8, '2025-03-12'),
+('NS-009', 'IMG/default.png', 'Antivirus Norton', 'Protección completa para PC', 79.99, 35, 6, 9, '2025-03-13'),
+('NS-010', 'IMG/default.png', 'Router TP-Link AX6000', 'WiFi 6 para conexiones rápidas', 179.99, 15, 7, 10, '2025-03-14'),
+('NS-011', 'IMG/default.png', 'Router aorus', 'WiFi 6 para conexiones rápidas', 179.99, 15, 7, 10, '2025-03-14');
+
 
 
  SELECT * FROM producto;
@@ -86,18 +88,50 @@ VALUES
 (1, 79.99, 9, 9);
 
  SELECT * FROM detalles_factura;
-INSERT INTO descuento (tipo_descuento, porcentaje, estado_descuento, id_producto, id_categoria) VALUES
-('Producto', 10.00, 'Activo', 1, NULL),
-('Producto', 15.00, 'Activo', 2, NULL),
-('Producto', 5.00, 'Activo', 3, NULL),
-('Producto', 8.00, 'Activo', 4, NULL),
-('Producto', 12.00, 'Activo', 5, NULL),
-('Producto', 20.00, 'Activo', 6, NULL),
-('Producto', 10.00, 'Activo', 7, NULL),
-('Producto', 25.00, 'Activo', 8, NULL),
-('Producto', 15.00, 'Activo', 9, NULL),
-('Categoria', 10.00, 'Activo', NULL, 1);  
+
+ 
+ SELECT p.id_producto, p.nombre, p.imagen, p.descripcion, p.precio, p.stock, 
+       p.id_categoria, p.fecha_creacion, s.nombre_subcategoria
+FROM producto p
+LEFT JOIN subcategoria s ON p.id_subcategoria = s.id_subcategoria;
+
+ 
+INSERT INTO descuento (tipo_descuento, valor, fecha_inicio, fecha_fin, estado_descuento, aplicacion) VALUES
+('Porcentaje', 15.00, '2025-04-01', '2025-04-30', 'Activo', 'producto'),
+('Fijo', 50.00, '2025-04-01', '2025-04-30', 'Activo', 'producto'),
+('Porcentaje', 10.00, '2025-04-05', '2025-04-20', 'Activo', 'categoria'),
+('Fijo', 100.00, '2025-04-10', '2025-04-15', 'Inactivo', 'producto'),
+('Porcentaje', 25.00, '2025-04-01', '2025-04-30', 'Activo', 'categoria'),
+('Fijo', 75.00, '2025-04-01', '2025-04-30', 'Activo', 'producto'),
+('Porcentaje', 20.00, '2025-04-01', '2025-04-10', 'Activo', 'producto'),
+('Fijo', 150.00, '2025-04-01', '2025-04-30', 'Inactivo', 'categoria'),
+('Porcentaje', 5.00, '2025-04-01', '2025-04-10', 'Activo', 'producto'),
+('Fijo', 200.00, '2025-04-01', '2025-04-30', 'Activo', 'categoria');
 
  SELECT * FROM descuento;
  
+ 
+ INSERT INTO descuento_producto (id_descuento, id_producto) VALUES
+(1, 1),  -- Descuento porcentaje 15% en Producto con id 1
+(2, 2),  -- Descuento fijo $50 en Producto con id 2
+(3, 3),  -- Descuento porcentaje 10% en Producto con id 3
+(4, 4),  -- Descuento fijo $100 en Producto con id 4
+(5, 5),  -- Descuento porcentaje 25% en Producto con id 5
+(6, 6),  -- Descuento fijo $75 en Producto con id 6
+(7, 7),  -- Descuento porcentaje 20% en Producto con id 7
+(8, 8),  -- Descuento fijo $150 en Producto con id 8
+(9, 9),  -- Descuento porcentaje 5% en Producto con id 9
+(10, 10); -- Descuento fijo $200 en Producto con id 10
  SELECT * FROM descuento_producto;
+ 
+ INSERT INTO descuento_categoria (id_descuento, id_categoria) VALUES
+(1, 1),  -- Descuento porcentaje 15% en categoría con id 1
+(2, 2),  -- Descuento fijo $50 en categoría con id 2
+(3, 3),  -- Descuento porcentaje 10% en categoría con id 3
+(4, 4),  -- Descuento fijo $100 en categoría con id 4
+(5, 5),  -- Descuento porcentaje 25% en categoría con id 5
+(6, 6),  -- Descuento fijo $75 en categoría con id 6
+(7, 7),  -- Descuento porcentaje 20% en categoría con id 7
+(8, 8),  -- Descuento fijo $150 en categoría con id 8
+(9, 9),  -- Descuento porcentaje 5% en categoría con id 9
+(10, 10); -- Descuento fijo $200 en categoría con id 10
